@@ -20,7 +20,7 @@ public class mecanumDrivetrain {
     private final Telemetry telemetry;
 
     private final DcMotor lf, lr, rf, rr;
-    private DcMotor winchMotor;
+    public DcMotor winchMotor;
 
     private final BNO055IMU imu;
 
@@ -35,8 +35,8 @@ public class mecanumDrivetrain {
         winchMotor = hardwareMap.dcMotor.get("winch");
         winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        lr = hardwareMap.dcMotor.get("driveBL");
-        lf = hardwareMap.dcMotor.get("driveFL");
+        lr = hardwareMap.dcMotor.get("leftB");
+        lf = hardwareMap.dcMotor.get("leftF");
         lr.setDirection(DcMotor.Direction.FORWARD);
         lf.setDirection(DcMotor.Direction.FORWARD);
         lr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -44,8 +44,8 @@ public class mecanumDrivetrain {
         lr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         lf.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        rr = hardwareMap.dcMotor.get("driveBR");
-        rf = hardwareMap.dcMotor.get("driveFR");
+        rr = hardwareMap.dcMotor.get("rightB");
+        rf = hardwareMap.dcMotor.get("rightF");
         rr.setDirection(DcMotor.Direction.REVERSE);
         rf.setDirection(DcMotor.Direction.REVERSE);
         rr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

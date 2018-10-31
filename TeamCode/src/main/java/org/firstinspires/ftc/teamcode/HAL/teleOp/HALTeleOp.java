@@ -27,8 +27,16 @@ public class HALTeleOp extends OpMode {
         if (gamepad1.x) {
             robot.resetHeading();
         }
+
         //----------------------------------------------=+(Drivetrain)+=----------------------------------------------\\
 
+        robot.winch(gamepad1.right_trigger - gamepad1.left_trigger);
+
+        if(gamepad1.left_bumper){
+            robot.winchMotor.setPower(0);
+        } else {
+            robot.winch(gamepad1.right_trigger - gamepad1.left_trigger);
+        }
     }
 
 }
