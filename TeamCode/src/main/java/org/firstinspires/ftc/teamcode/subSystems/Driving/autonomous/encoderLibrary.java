@@ -51,7 +51,7 @@ public class encoderLibrary {
     private static final double     HEADING_THRESHOLD       = 1 ;      // As tight as we can make it with an integer gyro
     private static final double     ENCODER_THRESHOLD       = 10;      // As tight as we can make it with an integer gyro
 
-    private static  double     P_TURN_COEFF            = 0.035;     // Larger is more responsive, but also less stable
+    private static  double     P_TURN_COEFF            = 0.01;     // Larger is more responsive, but also less stable
     private static  double     I_TURN_COEFF            = 0.001;     // Larger is more responsive, but also less stable
     private static  double     D_TURN_COEFF            = 0.1;     // Larger is more responsive, but also less stable
 
@@ -62,13 +62,13 @@ public class encoderLibrary {
     public encoderLibrary(HardwareMap hardwareMap, Telemetry tel, LinearOpMode opMode) {
         gyro = hardwareMap.get(BNO055IMU.class, "imuINT");
 
-        ultrasonicFront = hardwareMap.get(I2CXL.class, "ultsonFront");
-        ultrasonicBack = hardwareMap.get(I2CXL.class, "ultsonBack");
+//        ultrasonicFront = hardwareMap.get(I2CXL.class, "ultsonFront");
+//        ultrasonicBack = hardwareMap.get(I2CXL.class, "ultsonBack");
 
-        left_back_drive = hardwareMap.dcMotor.get("driveBL");
-        left_front_drive = hardwareMap.dcMotor.get("driveFL");
-        right_back_drive = hardwareMap.dcMotor.get("driveBR");
-        right_front_drive = hardwareMap.dcMotor.get("driveFR");
+        left_back_drive = hardwareMap.dcMotor.get("leftB");
+        left_front_drive = hardwareMap.dcMotor.get("leftF");
+        right_back_drive = hardwareMap.dcMotor.get("rightB");
+        right_front_drive = hardwareMap.dcMotor.get("rightF");
 
         telemetry = tel;
         linearOpMode = opMode;
@@ -84,8 +84,8 @@ public class encoderLibrary {
         gyro.initialize(param);
         gyro_angle = gyro.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
-        ultrasonicFront.initialize();
-        ultrasonicBack.initialize();
+//        ultrasonicFront.initialize();
+//        ultrasonicBack.initialize();
 
         left_back_drive.setDirection(DcMotor.Direction.REVERSE);
         left_front_drive.setDirection(DcMotor.Direction.REVERSE);
@@ -156,6 +156,16 @@ public class encoderLibrary {
 
         // Ensure that the opmode is still active
         if (linearOpMode.opModeIsActive()) {
+
+            left_back_drive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            left_front_drive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            right_back_drive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            right_front_drive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+            left_back_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            left_front_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            right_back_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            right_front_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
             // Determine new target position, and pass to motor controller
             moveCounts = (int)(distance * COUNTS_PER_INCH);

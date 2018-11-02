@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.HAL.teleOp;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.teamcode.subSystems.Driving.teleOp.mecanumDrivetrain;
 
 @TeleOp(name = "HAL TeleOp", group = "HAL")
@@ -10,8 +12,11 @@ public class HALTeleOp extends OpMode {
 
     private mecanumDrivetrain robot;
 
+    Telemetry tele;
+
     @Override
     public void init() {
+
 
         robot = new mecanumDrivetrain(hardwareMap, telemetry);
         robot.runUsingEncoders();
@@ -37,6 +42,7 @@ public class HALTeleOp extends OpMode {
         } else {
             robot.winch(gamepad1.right_trigger - gamepad1.left_trigger);
         }
+
     }
 
 }

@@ -142,6 +142,14 @@ public class mecanumDrivetrain {
         lr.setPower(_lr / scale);
         rf.setPower(_rf / scale);
         rr.setPower(_rr / scale);
+
+        telemetry.addData("LF", lf.getCurrentPosition());
+
+        telemetry.addData("LR", lr.getCurrentPosition());
+
+        telemetry.addData("RF", rf.getCurrentPosition());
+
+        telemetry.addData("RR ", rr.getCurrentPosition());
     }
 
     public void winch(double power) { winchMotor.setPower(power);}
@@ -171,8 +179,9 @@ public class mecanumDrivetrain {
         telemetry.addData("RAW Gyro: ",getRawHeading());
         telemetry.addData("Heading: ",getHeading());
         telemetry.addData("Offset: ",headingOffset);
-
         telemetry.update();
+
+
 
 
     }
