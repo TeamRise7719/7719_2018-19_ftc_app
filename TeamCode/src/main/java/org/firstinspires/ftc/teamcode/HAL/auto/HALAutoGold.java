@@ -40,10 +40,19 @@ public class HALAutoGold extends LinearOpMode {
         enc = new encoderLibrary(hardwareMap, telemetry,this);
         enc.init();
 
+        vis = new visionLibrary(hardwareMap, telemetry);
+        vis.initVuforia();
+        vis.initTfod();
+        vis.camFlash(true);
+        while(!isStarted()) {
+            position = vis.objectVision();
+        }
+        vis.camFlash(false);
+
+
+
         //1. Drop down from the latch
 
-
-        waitForStart();
 
         winchMotor.setPower(1);
         waitFor(2750);

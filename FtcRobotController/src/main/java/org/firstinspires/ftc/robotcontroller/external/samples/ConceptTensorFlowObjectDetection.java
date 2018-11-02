@@ -38,6 +38,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
+import com.vuforia.CameraDevice;
 
 /**
  * This 2018-2019 OpMode illustrates the basics of using the TensorFlow Object Detection API to
@@ -75,6 +76,8 @@ public class ConceptTensorFlowObjectDetection extends LinearOpMode {
      */
     private VuforiaLocalizer vuforia;
 
+    private CameraDevice camera;
+
     /**
      * {@link #tfod} is the variable we will use to store our instance of the Tensor Flow Object
      * Detection engine.
@@ -86,6 +89,8 @@ public class ConceptTensorFlowObjectDetection extends LinearOpMode {
         // The TFObjectDetector uses the camera frames from the VuforiaLocalizer, so we create that
         // first.
         initVuforia();
+
+        CameraDevice.getInstance().setFlashTorchMode(true);
 
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
             initTfod();
