@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.teamcode.subSystems.Driving.teleOp.mecanumDrivetrain;
 
@@ -11,6 +13,8 @@ import org.firstinspires.ftc.teamcode.subSystems.Driving.teleOp.mecanumDrivetrai
 public class HALTeleOp extends OpMode {
 
     private mecanumDrivetrain robot;
+    CRServo marker;
+    DcMotor plow;
 
     Telemetry tele;
 
@@ -20,6 +24,9 @@ public class HALTeleOp extends OpMode {
 
         robot = new mecanumDrivetrain(hardwareMap, telemetry);
         robot.runUsingEncoders();
+        marker = hardwareMap.crservo.get("marker");
+        plow = hardwareMap.dcMotor.get("plow");
+        plow.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
     }
 
@@ -35,13 +42,23 @@ public class HALTeleOp extends OpMode {
 
         //----------------------------------------------=+(Drivetrain)+=----------------------------------------------\\
 
-        robot.winch(gamepad1.right_trigger - gamepad1.left_trigger);
-
         if(gamepad1.left_bumper){
-            robot.winchMotor.setPower(0);
+            robot.winchMotor.setPower(-1);
+        } else if(gamepad1.right_bumper){
+            robot.winchMotor.setPower(1);
         } else {
-            robot.winch(gamepad1.right_trigger - gamepad1.left_trigger);
+            robot.winchMotor.setPower(0);
         }
+
+        if(gamepad1.a){
+            plow.setPower(1);
+        } else if(gamepad1.y){
+            plow.setPower(-1);
+        } else {
+            plow.setPower(0);
+        }
+
+        marker.setPower(1);
 
     }
 

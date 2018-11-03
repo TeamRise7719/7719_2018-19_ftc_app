@@ -38,6 +38,10 @@ public class visionLibrary {
         hwMap = hardwareMapRef;
     }
 
+    public void tensorflowclose(){
+        tfod.shutdown();
+    }
+
 
     public void initVuforia() {
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();

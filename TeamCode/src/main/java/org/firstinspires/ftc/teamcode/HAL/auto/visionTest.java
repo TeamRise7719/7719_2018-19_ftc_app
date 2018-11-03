@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.HAL.auto;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.subSystems.Sensing.visionLibrary;
@@ -10,6 +11,7 @@ import org.firstinspires.ftc.teamcode.subSystems.Sensing.visionLibrary;
  */
 
 @Autonomous
+@Disabled
 public class visionTest extends LinearOpMode {
 
     visionLibrary vis;

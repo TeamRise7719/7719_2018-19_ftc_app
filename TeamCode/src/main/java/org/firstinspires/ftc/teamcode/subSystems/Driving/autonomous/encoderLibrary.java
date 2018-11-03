@@ -51,7 +51,7 @@ public class encoderLibrary {
     private static final double     HEADING_THRESHOLD       = 1 ;      // As tight as we can make it with an integer gyro
     private static final double     ENCODER_THRESHOLD       = 10;      // As tight as we can make it with an integer gyro
 
-    private static  double     P_TURN_COEFF            = 0.01;     // Larger is more responsive, but also less stable
+    private static  double     P_TURN_COEFF            = 0.3;     // Larger is more responsive, but also less stable
     private static  double     I_TURN_COEFF            = 0.001;     // Larger is more responsive, but also less stable
     private static  double     D_TURN_COEFF            = 0.1;     // Larger is more responsive, but also less stable
 
@@ -347,6 +347,12 @@ public class encoderLibrary {
         // Ensure that the opmode is still active
         if (linearOpMode.opModeIsActive()) {
             // Set Target and Turn On RUN_TO_POSITION
+
+            left_back_drive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            left_front_drive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            right_back_drive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            right_front_drive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
             left_back_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             left_front_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             right_back_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -434,6 +440,17 @@ public class encoderLibrary {
         if (linearOpMode.opModeIsActive()) {
 
             // Determine new target position, and pass to motor controller
+
+            left_back_drive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            left_front_drive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            right_back_drive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            right_front_drive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+            left_back_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            left_front_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            right_back_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            right_front_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
             moveCounts = (int)(distance * COUNTS_PER_INCH);
             newLeftTarget = left_back_drive.getCurrentPosition() + moveCounts;
             newRightTarget = (right_back_drive.getCurrentPosition() + moveCounts)*-1;
@@ -451,7 +468,7 @@ public class encoderLibrary {
             right_front_drive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             // start motion.
-            speed = Range.clip(Math.abs(speed), 0.0, 1.0);
+            speed = Range.clip(speed, 0.0, 1.0);
             left_back_drive.setPower(speed);
             left_front_drive.setPower(-speed);
             right_back_drive.setPower(-speed);

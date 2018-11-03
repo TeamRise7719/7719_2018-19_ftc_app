@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.HAL.auto;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -9,10 +8,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.subSystems.Driving.autonomous.encoderLibrary;
 import org.firstinspires.ftc.teamcode.subSystems.Sensing.visionLibrary;
 
-
-@Autonomous
-public class HALAutoGold extends LinearOpMode {
-
+public class HALAutoSilver extends LinearOpMode {
 
     encoderLibrary enc;
     visionLibrary vis;
@@ -95,21 +91,19 @@ public class HALAutoGold extends LinearOpMode {
         if(position == 0){
             enc.gyroStrafeDistance(0.3,16.97+3, 0,false);
             waitFor(1000);
-            enc.gyroDrive(0.4, 24, 0, false);
+            enc.gyroDrive(0.4, 29, 0, false);
             waitFor(1000);
-            enc.gyroHold(0.2, 45, 3);
             enc.gyroDrive(0.4,3,0,false);
             waitFor(500);
         } else if (position == 2) {
             enc.gyroStrafeDistance(0.3,-16.97+3, 0,false);
             waitFor(1000);
-            enc.gyroDrive(0.4, 24, 0, false);
+            enc.gyroDrive(0.4, 29, 0, false);
             waitFor(1000);
-            enc.gyroHold(0.2, -45, 3);
             enc.gyroDrive(0.4,3,0,false);
             waitFor(500);
         } else {
-            enc.gyroDrive(0.4, 24, 0, false);
+            enc.gyroDrive(0.4, 29, 0, false);
             waitFor(1000);
         }
 
@@ -124,15 +118,6 @@ public class HALAutoGold extends LinearOpMode {
 
         //7. Drop off team marker
 
-        marker.setPower(-0.5);
-
-        waitFor(1000);
-
-        marker.setPower(1);
-
-        plow.setPower(1);
-        waitFor(500);
-        plow.setPower(0);
         //8. Turn towards crater
 
 
@@ -144,6 +129,7 @@ public class HALAutoGold extends LinearOpMode {
 
 
     }
+
 
 
 }
