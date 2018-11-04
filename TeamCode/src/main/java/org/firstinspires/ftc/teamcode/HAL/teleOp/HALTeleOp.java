@@ -50,10 +50,10 @@ public class HALTeleOp extends OpMode {
             robot.winchMotor.setPower(0);
         }
 
-        if(gamepad1.a){
-            plow.setPower(1);
-        } else if(gamepad1.y){
+        if(gamepad2.a){
             plow.setPower(-1);
+        } else if(gamepad2.y){
+            plow.setPower(1);
         } else {
             plow.setPower(0);
         }

@@ -55,9 +55,16 @@ public class HALAutoGold extends LinearOpMode {
 
         vis.camFlash(false);
 
+//        enc.gyroHold(-0.2, 45, 3);
+//        enc.gyroHold(0.2, 45, 3);
+//        enc.gyroHold(-0.2, -45, 3);
+//        enc.gyroHold(0.2, -45, 3);
+
+
+
+
 
         //1. Drop down from the latch
-
 
         winchMotor.setPower(1);
         waitFor(1750);
@@ -97,19 +104,19 @@ public class HALAutoGold extends LinearOpMode {
             waitFor(1000);
             enc.gyroDrive(0.4, 24, 0, false);
             waitFor(1000);
-            enc.gyroHold(0.2, 45, 3);
-            enc.gyroDrive(0.4,3,0,false);
-            waitFor(500);
+//            enc.gyroHold(0.2, 45, 3);
+//            enc.gyroDrive(0.4,6,0,false);
+//            waitFor(500);
         } else if (position == 2) {
             enc.gyroStrafeDistance(0.3,-16.97+3, 0,false);
             waitFor(1000);
             enc.gyroDrive(0.4, 24, 0, false);
             waitFor(1000);
-            enc.gyroHold(0.2, -45, 3);
-            enc.gyroDrive(0.4,3,0,false);
+            enc.gyroHold(-0.2, 45, 3);
+            enc.gyroDrive(0.4,6,0,false);
             waitFor(500);
         } else {
-            enc.gyroDrive(0.4, 24, 0, false);
+            enc.gyroDrive(0.4, 26, 0, false);
             waitFor(1000);
         }
 
@@ -133,7 +140,7 @@ public class HALAutoGold extends LinearOpMode {
         plow.setPower(1);
         waitFor(500);
         plow.setPower(0);
-        //8. Turn towards crater
+//        //8. Turn towards crater
 
 
 

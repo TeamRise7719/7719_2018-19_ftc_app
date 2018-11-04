@@ -170,9 +170,9 @@ public class mecanumDrivetrain {
         final double rr = speed * Math.sin(direction + Math.PI / 4.0) - rotation;
 
         if((gamepad1.right_trigger>0.1)) {
-            setMotors(lf / 2, lr / 2, rf / 2, rr / 2);
-        } else {
             setMotors(lf, lr, rf, rr);
+        } else {
+            setMotors(lf / 2, lr / 2, rf / 2, rr / 2);
         }
 
         telemetry.addData("Speeds","%f,%f,%f,%f", lf,rf,lr,rr);

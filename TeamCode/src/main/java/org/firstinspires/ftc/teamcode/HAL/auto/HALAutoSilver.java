@@ -58,7 +58,7 @@ public class HALAutoSilver extends LinearOpMode {
 
 
         winchMotor.setPower(1);
-        waitFor(1750);
+        waitFor(1950);
         plow.setPower(-0.75);
         waitFor(1000);
         winchMotor.setPower(0);
@@ -93,21 +93,32 @@ public class HALAutoSilver extends LinearOpMode {
         if(position == 0){
             enc.gyroStrafeDistance(0.3,16.97+3, 0,false);
             waitFor(1000);
-            enc.gyroDrive(0.4, 29, 0, false);
+            enc.gyroDrive(0.4, 8, 0, false);
             waitFor(1000);
-            enc.gyroDrive(0.4,3,0,false);
-            waitFor(500);
+
         } else if (position == 2) {
             enc.gyroStrafeDistance(0.3,-16.97+3, 0,false);
             waitFor(1000);
-            enc.gyroDrive(0.4, 29, 0, false);
+
+            enc.gyroDrive(0.4, 8, 0, false);
             waitFor(1000);
-            enc.gyroDrive(0.4,3,0,false);
-            waitFor(500);
+
         } else {
-            enc.gyroDrive(0.4, 29, 0, false);
+            enc.gyroDrive(0.4, 8, 0, false);
             waitFor(1000);
         }
+
+
+        waitFor(1000);
+        plow.setPower(0.85);
+        waitFor(800);
+
+
+        enc.gyroDrive(0.4, 12, 0, false);
+        waitFor(4000);
+
+        plow.setPower(-0.85);
+
 
 
 

@@ -57,7 +57,7 @@ public class SynchronousPID {
         m_last_input = input;
         m_error = m_setpoint - input;
         if (m_continuous) {
-            if (Math.abs(m_error) > (m_maximumInput - m_minimumInput) / 2) {
+            if ((m_error) > (m_maximumInput - m_minimumInput) / 2) {
                 if (m_error > 0) {
                     m_error = m_error - m_maximumInput + m_minimumInput;
                 } else {
