@@ -51,9 +51,9 @@ public class encoderLibrary {
     private static final double     HEADING_THRESHOLD       = 1 ;      // As tight as we can make it with an integer gyro
     private static final double     ENCODER_THRESHOLD       = 10;      // As tight as we can make it with an integer gyro
 
-    private static  double     P_TURN_COEFF            = 0.15;     // Larger is more responsive, but also less stable
+    private static  double     P_TURN_COEFF            = 0.05;     // Larger is more responsive, but also less stable
     private static  double     I_TURN_COEFF            = 0.001;     // Larger is more responsive, but also less stable
-    private static  double     D_TURN_COEFF            = 0.1;     // Larger is more responsive, but also less stable
+    private static  double     D_TURN_COEFF            = 0.05;     // Larger is more responsive, but also less stable
 
 
     private static final double     P_DRIVE_COEFF           = 0.16;     // Larger is more responsive, but also less stable
@@ -609,11 +609,20 @@ public class encoderLibrary {
         motorSpeed = turn_PID.calculate(gyro_angle.firstAngle);
 
         // Send desired speeds to motors.
-        left_front_drive.setPower(-motorSpeed);
-        left_back_drive.setPower(-motorSpeed);
-        right_front_drive.setPower(motorSpeed);
-        right_back_drive.setPower(motorSpeed);
 
+        if (angle < 0){
+            left_front_drive.setPower(-motorSpeed);
+            left_back_drive.setPower(-motorSpeed);
+            right_front_drive.setPower(motorSpeed);
+            right_back_drive.setPower(motorSpeed);
+
+        } else {
+            left_front_drive.setPower(motorSpeed);
+            left_back_drive.setPower(motorSpeed);
+            right_front_drive.setPower(-motorSpeed);
+            right_back_drive.setPower(-motorSpeed);
+
+        }
         // Display it for the driver.
         telemetry.addData("Target", "%5.2f", angle);
         telemetry.addData("Err/Angle", "%5.2f:%5.2f", turn_PID.getError(),gyro_angle.firstAngle);

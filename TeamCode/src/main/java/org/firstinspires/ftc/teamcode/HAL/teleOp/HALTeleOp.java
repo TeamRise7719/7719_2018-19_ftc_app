@@ -22,6 +22,7 @@ public class HALTeleOp extends OpMode {
     public void init() {
 
 
+
         robot = new mecanumDrivetrain(hardwareMap, telemetry);
         robot.runUsingEncoders();
         marker = hardwareMap.crservo.get("marker");
@@ -54,6 +55,13 @@ public class HALTeleOp extends OpMode {
             plow.setPower(-1);
         } else if(gamepad2.y){
             plow.setPower(1);
+        } else {
+            plow.setPower(0);
+        }
+        if(gamepad1.a){
+            marker.setPower(-1);
+        } else if(gamepad1.y){
+            marker.setPower(1);
         } else {
             plow.setPower(0);
         }
