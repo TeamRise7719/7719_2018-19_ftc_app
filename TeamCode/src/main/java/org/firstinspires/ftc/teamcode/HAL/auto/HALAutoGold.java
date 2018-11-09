@@ -122,16 +122,13 @@ public class HALAutoGold extends LinearOpMode {
         waitFor(250);
         enc.gyroHold(-0.2, -50, 3);
         enc.gyroStrafeDistance(0.4, 1.5, 0, false);
-        enc.gyroDrive(0.4, 50, 0, false);
+        enc.gyroDrive(0.4, 55, 0, false);
 //
 //        waitFor(1000);
 //
         marker.setPower(1);
         waitFor(1000);
-        enc.gyroDrive(0.8, -75 / 2, 0, false);
-        waitFor(500);
-        enc.gyroHold(-0.2,135, 5);
-        enc.gyroDrive(0.8, 30, 0, false);
+        enc.gyroDrive(0.8, -80, 0, false);
 
 
 //        plow.setPower(1);
