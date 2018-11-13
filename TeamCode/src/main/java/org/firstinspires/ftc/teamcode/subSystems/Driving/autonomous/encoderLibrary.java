@@ -51,7 +51,7 @@ public class encoderLibrary {
     private static final double     HEADING_THRESHOLD       = 1 ;      // As tight as we can make it with an integer gyro
     private static final double     ENCODER_THRESHOLD       = 10;      // As tight as we can make it with an integer gyro
 
-    private static  double     P_TURN_COEFF            = 0.04;     // Larger is more responsive, but also less stable
+    private static  double     P_TURN_COEFF            = 0.02;     // Larger is more responsive, but also less stable
     private static  double     I_TURN_COEFF            = 0.001;     // Larger is more responsive, but also less stable
     private static  double     D_TURN_COEFF            = 0.05;     // Larger is more responsive, but also less stable
 

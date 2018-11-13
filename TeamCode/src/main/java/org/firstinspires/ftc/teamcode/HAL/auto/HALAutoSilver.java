@@ -17,7 +17,7 @@ public class HALAutoSilver extends LinearOpMode {
     int position;
     DcMotor winchMotor;
     DcMotor plow;
-    CRServo marker;
+    CRServo marker,crater;
     ElapsedTime etime = new ElapsedTime();
 
     public void waitFor(int time) {
@@ -37,6 +37,7 @@ public class HALAutoSilver extends LinearOpMode {
         plow = hardwareMap.dcMotor.get("plow");
         plow.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         marker = hardwareMap.crservo.get("marker");
+        crater = hardwareMap.crservo.get("crater");
 
         enc = new encoderLibrary(hardwareMap, telemetry, this);
         enc.init();
@@ -58,9 +59,9 @@ public class HALAutoSilver extends LinearOpMode {
 
 
         winchMotor.setPower(1);
-        waitFor(2000);
+        waitFor(3000);
         plow.setPower(-0.75);
-        waitFor(1000);
+        waitFor(200);
         winchMotor.setPower(0);
         plow.setPower(0);
 
@@ -68,63 +69,65 @@ public class HALAutoSilver extends LinearOpMode {
         //2. Strafe to the left
 
         enc.gyroStrafeDistance(0.4, 4, 0, false);
-        winchMotor.setPower(-1);
-        waitFor(2750);
-        winchMotor.setPower(0);
+        waitFor(200);
+      ;
 
 
         //3.1. Come forward
 
         enc.gyroDrive(0.4, 5, 0, false);
-        waitFor(1000);
+        waitFor(200);
 
         //3.2. Re-center
 
         enc.gyroStrafeDistance(0.4, -4, 0, false);
-        waitFor(1000);
+        waitFor(200);
 
 
         //4. Sample gold mineral
 
+
         enc.gyroDrive(0.3, 9, 0, false);
-        waitFor(1000);
+        waitFor(200);
 
         if (position == 0) {
             enc.gyroStrafeDistance(0.3, 16.97 + 3, 0, false);
-            waitFor(1000);
+            waitFor(500);
             enc.gyroDrive(0.4, 15, 0, false);
-            waitFor(1000);
+            waitFor(500);
             enc.gyroDrive(0.4, -15, 0, false);
             enc.gyroStrafeDistance(0.3, -16.97 + 3, 0, false);
 
         } else if (position == 2) {
             enc.gyroStrafeDistance(0.3, -16.97 + 3, 0, false);
-            waitFor(1000);
+            waitFor(500);
 
             enc.gyroDrive(0.4, 15, 0, false);
-            waitFor(1000);
+            waitFor(500);
             enc.gyroDrive(0.4, -15, 0, false);
-            waitFor(1000);
+            waitFor(500);
             enc.gyroStrafeDistance(0.3, 16.97 + 3, 0, false);
 
         } else {
             enc.gyroDrive(0.4, 15, 0, false);
-            waitFor(1000);
+            waitFor(500);
             enc.gyroDrive(0.4, -15, 0, false);
         }
 
             enc.gyroStrafeDistance(0.4, 45, 0, false);
-            waitFor(250);
-            enc.gyroHold(0.2, -215 + 196.5, 3);
-            waitFor(500);
+            waitFor(200);
+            enc.gyroHold(0.2, -215 + 195    , 3);
+            waitFor(200);
             enc.gyroStrafeDistance(0.2,-5,0,false);
-            waitFor(500);
+            waitFor(200);
             enc.gyroDrive(0.4, 36, 0, false);
-            waitFor(500);
-            waitFor(500);
+            waitFor(200);
             marker.setPower(1);
-            waitFor(250);
-            enc.gyroDrive(.5,-75,0,false);
+            waitFor(1000);
+
+        enc.gyroDrive(0.4, -62, 0, false);
+        waitFor(200);
+        crater.setPower(0.7);
 
 //            enc.gyroDrive(0.4, 8, 0, false);
 //            waitFor(250);
@@ -133,7 +136,6 @@ public class HALAutoSilver extends LinearOpMode {
 //            enc.gyroDrive(0.8, -80, 0, false);
 
 
-            waitFor(1000);
             plow.setPower(0.85);
             waitFor(800);
 

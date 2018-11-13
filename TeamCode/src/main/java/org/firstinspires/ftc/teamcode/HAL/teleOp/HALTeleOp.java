@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.subSystems.Driving.teleOp.mecanumDrivetrai
 public class HALTeleOp extends OpMode {
 
     private mecanumDrivetrain robot;
-    CRServo marker;
+    CRServo marker, crater;
     DcMotor plow;
 
     Telemetry tele;
@@ -25,6 +25,7 @@ public class HALTeleOp extends OpMode {
         robot = new mecanumDrivetrain(hardwareMap, telemetry);
         robot.runUsingEncoders();
         marker = hardwareMap.crservo.get("marker");
+        crater = hardwareMap.crservo.get("crater");
         plow = hardwareMap.dcMotor.get("plow");
         plow.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
@@ -32,6 +33,8 @@ public class HALTeleOp extends OpMode {
 
     @Override
     public void loop() {
+        marker.setPower(-1);
+
 
         //----------------------------------------------=+(Drivetrain)+=----------------------------------------------\\
         robot.drive(gamepad1, telemetry);
@@ -46,17 +49,25 @@ public class HALTeleOp extends OpMode {
             robot.winchMotor.setPower(-1);
         } else if (gamepad1.right_bumper) {
             robot.winchMotor.setPower(1);
-        } else {
-            robot.winchMotor.setPower(0);
+        } else {robot.winchMotor.setPower(0);
         }
 
-        if (gamepad2.a) {
+            if (gamepad2.a) {
             plow.setPower(-1);
         } else if (gamepad2.y) {
             plow.setPower(1);
         } else {
             plow.setPower(0);
         }
+        if (gamepad1.a){
+            crater.setPower(1);
 
+        } else if (gamepad1.b){
+            crater.setPower(0);
+        }else if (gamepad1.y){
+            crater.setPower(-1);
         }
+
     }
+
+}
