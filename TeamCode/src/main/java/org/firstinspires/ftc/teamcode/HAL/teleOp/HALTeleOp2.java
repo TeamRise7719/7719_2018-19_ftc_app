@@ -1,16 +1,16 @@
 package org.firstinspires.ftc.teamcode.HAL.teleOp;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-        import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-        import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-        import com.qualcomm.robotcore.hardware.CRServo;
-        import com.qualcomm.robotcore.hardware.DcMotor;
-        import org.firstinspires.ftc.teamcode.subSystems.Driving.teleOp.mecanumDrivetrain;
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import org.firstinspires.ftc.teamcode.subSystems.Driving.teleOp.mecanumDrivetrain;
 
 @TeleOp(name = "HAL TeleOp", group = "HAL")
-public class HALTeleOp extends OpMode {
+public class HALTeleOp2 extends OpMode {
 
     private mecanumDrivetrain robot;
     CRServo marker, crater;
@@ -49,24 +49,29 @@ public class HALTeleOp extends OpMode {
             robot.winchMotor.setPower(-1);
         } else if (gamepad1.right_bumper) {
             robot.winchMotor.setPower(1);
-        } else {robot.winchMotor.setPower(0);
-        }
-
-        if (gamepad2.a) {
-            plow.setPower(-1);
-        } else if (gamepad2.y) {
-            plow.setPower(1);
         } else {
-            plow.setPower(0);
+            robot.winchMotor.setPower(0);
         }
-        if (gamepad1.a){
-            crater.setPower(1);
 
-        } else if (gamepad1.b){
-            crater.setPower(0);
-        }else if (gamepad1.y){
-            crater.setPower(-1);
-        }
+
+//
+//  if(gamepad1.a) {
+//  send out intake
+//    }
+//
+//
+// if(gamepad1.b) {
+// take out intake
+//   }
+//
+//
+// if(gamepad1.lefttrigger) {
+//  increase vertical value on outtake
+//   }
+//
+// if(gamepad1.righttrigger) {
+//  decrease vertical value on outtake
+//   }
 
     }
 
