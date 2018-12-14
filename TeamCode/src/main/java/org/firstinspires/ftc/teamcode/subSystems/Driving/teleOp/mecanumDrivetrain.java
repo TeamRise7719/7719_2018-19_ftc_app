@@ -169,11 +169,9 @@ public class mecanumDrivetrain {
         final double lr = speed * Math.cos(direction + Math.PI / 4.0) + rotation;
         final double rr = speed * Math.sin(direction + Math.PI / 4.0) - rotation;
 
-        if((gamepad1.right_trigger>0.1)) {
-            setMotors(lf, lr, rf, rr);
-        } else {
-            setMotors(lf / 2, lr / 2, rf / 2, rr / 2);
-        }
+
+        setMotors(lf * lf * lf, lr * lr * lr, rf * rf * rf, rr * rr * rr);
+
 
         telemetry.addData("Speeds","%f,%f,%f,%f", lf,rf,lr,rr);
         telemetry.addData("RAW Gyro: ",getRawHeading());

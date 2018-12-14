@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.teamcode.subSystems.Driving.teleOp.mecanumDrivetrain;
 
-@TeleOp(name = "HAL TeleOp", group = "HAL")
+@TeleOp(name = "HAL TeleOp2", group = "HAL")
 public class HALTeleOp2 extends OpMode {
 
     private mecanumDrivetrain robot;
@@ -33,7 +33,7 @@ public class HALTeleOp2 extends OpMode {
 
     @Override
     public void loop() {
-        marker.setPower(-1);
+//        marker.setPower(-1);
 
 
         //----------------------------------------------=+(Drivetrain)+=----------------------------------------------\\
@@ -65,7 +65,7 @@ public class HALTeleOp2 extends OpMode {
 //   }
 //
 //
-// if(gamepad1.lefttrigger) {
+// if(gamepad1.) {
 //  increase vertical value on outtake
 //   }
 //

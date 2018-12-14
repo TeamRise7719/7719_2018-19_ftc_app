@@ -109,29 +109,31 @@ public class HALAutoSilver2 extends LinearOpMode {
         } else
         {
             // put out outtake all the way to depot
-
+            enc.gyroDrive(0.4, 15, 0, false);
+            waitFor(500);
+            enc.gyroDrive(0.4, -15, 0, false);
 
         }
 
-        enc.gyroStrafeDistance(0.4, 52, 0, false);
-        waitFor(250);
-        enc.gyroHold(0.2, -215 + 195    , 3);
-        waitFor(200);
-        enc.gyroStrafeDistance(0.2,-5,0,false);
-        waitFor(200);
-        enc.gyroDrive(0.4, 36, 0, false);
-        waitFor(200);
-
-
-
-
-        enc.gyroHold(0.4, 90, 250);
-        enc.gyroDrive(0.4, 4, 0, false);
-        enc.gyroStrafeDistance(0.4, 5,0,false);
-        //put out intake and score in lander
-        //do as many times as we can
-        crater.setPower(1);
-        waitFor(250);
+//        enc.gyroStrafeDistance(0.4, 52, 0, false);
+//        waitFor(250);
+//        enc.gyroHold(0.2, -215 + 195    , 3);
+//        waitFor(200);
+//        enc.gyroStrafeDistance(0.2,-5,0,false);
+//        waitFor(200);
+//        enc.gyroDrive(0.4, 36, 0, false);
+//        waitFor(200);
+//
+//
+//
+//
+//        enc.gyroHold(0.4, 90, 250);
+//        enc.gyroDrive(0.4, 4, 0, false);
+//        enc.gyroStrafeDistance(0.4, 5,0,false);
+//        //put out intake and score in lander
+//        //do as many times as we can
+//        crater.setPower(1);
+//        waitFor(250);
 
     }
 }

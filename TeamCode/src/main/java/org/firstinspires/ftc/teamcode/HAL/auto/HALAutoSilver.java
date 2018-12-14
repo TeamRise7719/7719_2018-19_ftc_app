@@ -59,28 +59,30 @@ public class HALAutoSilver extends LinearOpMode {
 
 
         winchMotor.setPower(1);
-        waitFor(3000);
+        waitFor(3400);
         plow.setPower(-0.75);
         waitFor(200);
         winchMotor.setPower(0);
         plow.setPower(0);
 
 
+
         //2. Strafe to the left
 
-        enc.gyroStrafeDistance(0.4, 4, 0, false);
+        enc.gyroDrive(0.4, 4, 0, false);
         waitFor(200);
-      ;
+
 
 
         //3.1. Come forward
 
-        enc.gyroDrive(0.4, 5, 0, false);
+        enc.gyroStrafeDistance(0.4, 5, 0, false);
         waitFor(200);
+        enc.gyroHold(0.4, 90, 1);
 
         //3.2. Re-center
 
-        enc.gyroStrafeDistance(0.4, -4, 0, false);
+        enc.gyroDrive(0.4, -4, 0, false);
         waitFor(200);
 
 
@@ -91,30 +93,30 @@ public class HALAutoSilver extends LinearOpMode {
         waitFor(200);
 
         if (position == 0) {
-            enc.gyroStrafeDistance(0.3, 16.97 + 3, 0, false);
+            enc.gyroDrive(0.3, 16.97 + 3, 0, false);
             waitFor(500);
-            enc.gyroDrive(0.4, 15, 0, false);
+            enc.gyroStrafeDistance(0.4, 15, 0, false);
             waitFor(500);
-            enc.gyroDrive(0.4, -15, 0, false);
-            enc.gyroStrafeDistance(0.3, -16.97 + 3, 0, false);
+            enc.gyroStrafeDistance(0.4, -15, 0, false);
+            enc.gyroDrive(0.3, -16.97 + 3, 0, false);
 
         } else if (position == 2) {
-            enc.gyroStrafeDistance(0.3, -16.97 + 3, 0, false);
+            enc.gyroDrive(0.3, -16.97 + 3, 0, false);
             waitFor(500);
 
-            enc.gyroDrive(0.4, 15, 0, false);
+            enc.gyroStrafeDistance(0.4, 15, 0, false);
             waitFor(500);
-            enc.gyroDrive(0.4, -15, 0, false);
+            enc.gyroStrafeDistance(0.4, -15, 0, false);
             waitFor(500);
-            enc.gyroStrafeDistance(0.3, 16.97 + 3, 0, false);
+            enc.gyroDrive(0.3, 16.97 + 3, 0, false);
 
         } else {
-            enc.gyroDrive(0.4, 15, 0, false);
+            enc.gyroStrafeDistance(0.4, 15, 0, false);
             waitFor(500);
-            enc.gyroDrive(0.4, -15, 0, false);
+            enc.gyroStrafeDistance(0.4, -15, 0, false);
         }
 
-            enc.gyroStrafeDistance(0.4, 45, 0, false);
+            enc.gyroDrive(0.4, 45, 0, false);
             waitFor(200);
             enc.gyroHold(0.2, -215 + 195    , 3);
             waitFor(200);
