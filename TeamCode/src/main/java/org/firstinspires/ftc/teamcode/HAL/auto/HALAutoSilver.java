@@ -78,7 +78,7 @@ public class HALAutoSilver extends LinearOpMode {
 
         enc.gyroStrafeDistance(0.4, 5, 0, false);
         waitFor(200);
-        enc.gyroHold(0.4, 90, 1);
+        enc.gyroHold(0.4, -90, 1);
 
         //3.2. Re-center
 

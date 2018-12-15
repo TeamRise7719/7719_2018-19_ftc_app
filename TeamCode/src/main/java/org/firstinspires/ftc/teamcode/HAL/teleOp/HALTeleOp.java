@@ -68,6 +68,10 @@ public class HALTeleOp extends OpMode {
             crater.setPower(-1);
         }
 
+        if (gamepad1.x){
+            marker.setPower(1);
+        }
+
     }
 
 }
