@@ -31,10 +31,10 @@ public class HALAutoSilver extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-
-        winchMotor = hardwareMap.dcMotor.get("winch");
-        winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        plow = hardwareMap.dcMotor.get("plow");
+//
+//        winchMotor = hardwareMap.dcMotor.get("winch");
+//        winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        plow = hardwareMap.dcMotor.get("plow");
         plow.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         marker = hardwareMap.crservo.get("marker");
         crater = hardwareMap.crservo.get("crater");
@@ -58,12 +58,12 @@ public class HALAutoSilver extends LinearOpMode {
         //1. Drop down from the latch
 
 
-        winchMotor.setPower(1);
-        waitFor(3400);
-        plow.setPower(-0.75);
-        waitFor(200);
-        winchMotor.setPower(0);
-        plow.setPower(0);
+//        winchMotor.setPower(1);
+//        waitFor(3400);
+//        plow.setPower(-0.75);
+//        waitFor(200);
+//        winchMotor.setPower(0);
+//        plow.setPower(0);
 
 
 

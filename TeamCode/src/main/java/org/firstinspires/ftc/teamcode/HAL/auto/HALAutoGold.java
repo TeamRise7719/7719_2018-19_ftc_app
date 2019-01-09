@@ -29,8 +29,8 @@ encoderLibrary enc;
         @Override
         public void runOpMode() throws InterruptedException {
 
-            winchMotor = hardwareMap.dcMotor.get("winch");
-            winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//            winchMotor = hardwareMap.dcMotor.get("winch");
+//            winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             plow = hardwareMap.dcMotor.get("plow");
             plow.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             marker = hardwareMap.crservo.get("marker");
@@ -59,22 +59,22 @@ encoderLibrary enc;
 
             //1. Drop down from the latch
 
-            winchMotor.setPower(1);
-            waitFor(1750);
-            plow.setPower(-0.75);
-            waitFor(1000);
-            waitFor(3250);
-            winchMotor.setPower(0);
-            plow.setPower(0);
+//            winchMotor.setPower(1);
+//            waitFor(1750);
+//            plow.setPower(-0.75);
+//            waitFor(1000);
+//            waitFor(3250);
+//            winchMotor.setPower(0);
+//            plow.setPower(0);
 
 
             //2. Strafe to the left
 
             enc.gyroStrafeDistance(0.4, -3, 0, false);
 //        enc.gyroStrafeDistance(0.4, 3, 0, false);
-            winchMotor.setPower(-1);
-            waitFor(2750);
-            winchMotor.setPower(0);
+//            winchMotor.setPower(-1);
+//            waitFor(2750);
+//            winchMotor.setPower(0);
 
             //3.1. Come forward
 

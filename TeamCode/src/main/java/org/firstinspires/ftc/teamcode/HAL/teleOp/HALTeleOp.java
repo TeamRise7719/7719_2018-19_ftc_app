@@ -45,12 +45,6 @@ public class HALTeleOp extends OpMode {
 
         //----------------------------------------------=+(Drivetrain)+=----------------------------------------------\\
 
-        if (gamepad1.left_bumper) {
-            robot.winchMotor.setPower(-1);
-        } else if (gamepad1.right_bumper) {
-            robot.winchMotor.setPower(1);
-        } else {robot.winchMotor.setPower(0);
-        }
 
         if (gamepad2.a) {
             plow.setPower(-1);
