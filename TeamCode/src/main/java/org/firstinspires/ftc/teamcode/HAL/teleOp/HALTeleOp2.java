@@ -93,15 +93,6 @@ public class HALTeleOp2 extends OpMode {
 
         //Toggle Hook//
 
-        /*if(gamepad2.a){
-            if(servoSpot == .05){
-                servo.setPosition(.95);
-                servoSpot = .95;
-            } else {
-                servo.setPosition(.95);
-                servoSpot = .05;
-            }
-        }*/
 
 
 
