@@ -16,7 +16,7 @@ public class HALTeleOp2 extends OpMode {
 
     private mecanumDrivetrain robot;
     DcMotor arm1, arm2;
-    DcMotor introtL, introtR;
+    DcMotor intRotL, intRotR;
     CRServo intR, intL;
     CRServo hook;
     Servo lift1, lift2, lift3, lift4;
@@ -35,10 +35,10 @@ public class HALTeleOp2 extends OpMode {
         arm2 = hardwareMap.dcMotor.get("arm2");
         arm1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         arm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        introtL = hardwareMap.dcMotor.get("introtL");
-        introtR = hardwareMap.dcMotor.get("introtR");
-        introtL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        introtR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        intRotL = hardwareMap.dcMotor.get("intRotL");
+        intRotR = hardwareMap.dcMotor.get("intRotR");
+        intRotL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        intRotR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         intL = hardwareMap.crservo.get("intL");
         intR = hardwareMap.crservo.get("intR");
         hook = hardwareMap.crservo.get("hook");
@@ -77,18 +77,18 @@ public class HALTeleOp2 extends OpMode {
 
         //Intake Rotation\\
         if (gamepad2.left_bumper) {
-            introtR.setPower(1);
-            introtL.setPower(1);
+            intRotR.setPower(1);
+            intRotL.setPower(1);
         } else {
-            introtR.setPower(0);
-            introtL.setPower(0);
+            intRotR.setPower(0);
+            intRotL.setPower(0);
         }
         if (gamepad2.right_bumper){
-            introtR.setPower(-1);
-            introtL.setPower(-1);
+            intRotR.setPower(-1);
+            intRotL.setPower(-1);
         } else {
-            introtR.setPower(0);
-            introtL.setPower(0);
+            intRotR.setPower(0);
+            intRotL.setPower(0);
         }
 
         //Toggle Hook//
