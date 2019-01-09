@@ -7,14 +7,21 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
+
 import org.firstinspires.ftc.teamcode.subSystems.Driving.teleOp.mecanumDrivetrain;
 
-@TeleOp(name = "HAL TeleOp2", group = "HAL")
+@TeleOp(name = "HAL TeleOp", group = "HAL")
 public class HALTeleOp2 extends OpMode {
 
     private mecanumDrivetrain robot;
-    CRServo marker, crater;
-    DcMotor plow;
+    DcMotor arm1, arm2;
+    DcMotor introtL, introtR;
+    CRServo intR, intL;
+    CRServo hook;
+    Servo lift1, lift2, lift3, lift4;
+
+
 
     Telemetry tele;
 
@@ -24,16 +31,28 @@ public class HALTeleOp2 extends OpMode {
 
         robot = new mecanumDrivetrain(hardwareMap, telemetry);
         robot.runUsingEncoders();
-        marker = hardwareMap.crservo.get("marker");
-        crater = hardwareMap.crservo.get("crater");
-        plow = hardwareMap.dcMotor.get("plow");
-        plow.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        arm1 = hardwareMap.dcMotor.get("arm1");
+        arm2 = hardwareMap.dcMotor.get("arm2");
+        arm1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        arm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        introtL = hardwareMap.dcMotor.get("introtL");
+        introtR = hardwareMap.dcMotor.get("introtR");
+        introtL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        introtR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        intL = hardwareMap.crservo.get("intL");
+        intR = hardwareMap.crservo.get("intR");
+        hook = hardwareMap.crservo.get("hook");
+        lift1 = hardwareMap.servo.get("lift1");
+        lift2 = hardwareMap.servo.get("lift2");
+        lift3 = hardwareMap.servo.get("lift3");
+        lift4 = hardwareMap.servo.get("lift4");
+
+        //boolean changed = false;
 
     }
 
     @Override
     public void loop() {
-//        marker.setPower(-1);
 
 
         //----------------------------------------------=+(Drivetrain)+=----------------------------------------------\\
@@ -45,33 +64,50 @@ public class HALTeleOp2 extends OpMode {
 
         //----------------------------------------------=+(Drivetrain)+=----------------------------------------------\\
 
-        if (gamepad1.left_bumper) {
-            robot.winchMotor.setPower(-1);
-        } else if (gamepad1.right_bumper) {
-            robot.winchMotor.setPower(1);
+
+        //--------------------------------------------=+(Intake/Hanging)+=--------------------------------------------\\
+
+        //Intake\\
+        intL.setPower(gamepad2.left_stick_y);
+        intR.setPower(-gamepad2.left_stick_y);
+
+        //X-Rail Extension\\
+        arm1.setPower(-gamepad2.right_stick_y);
+        arm2.setPower(-gamepad2.right_stick_y);
+
+        //Intake Rotation\\
+        if (gamepad2.left_bumper) {
+            introtR.setPower(1);
+            introtL.setPower(1);
         } else {
-            robot.winchMotor.setPower(0);
+            introtR.setPower(0);
+            introtL.setPower(0);
+        }
+        if (gamepad2.right_bumper){
+            introtR.setPower(-1);
+            introtL.setPower(-1);
+        } else {
+            introtR.setPower(0);
+            introtL.setPower(0);
         }
 
+        //Toggle Hook//
 
-//
-//  if(gamepad1.a) {
-//  send out intake
-//    }
-//
-//
-// if(gamepad1.b) {
-// take out intake
-//   }
-//
-//
-// if(gamepad1.) {
-//  increase vertical value on outtake
-//   }
-//
-// if(gamepad1.righttrigger) {
-//  decrease vertical value on outtake
-//   }
+        /*if(gamepad2.a){
+            if(servoSpot == .05){
+                servo.setPosition(.95);
+                servoSpot = .95;
+            } else {
+                servo.setPosition(.95);
+                servoSpot = .05;
+            }
+        }*/
+
+
+
+
+
+
 
     }
 

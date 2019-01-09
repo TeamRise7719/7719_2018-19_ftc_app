@@ -5,23 +5,34 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.subSystems.Driving.autonomous.encoderLibrary;
 import org.firstinspires.ftc.teamcode.subSystems.Sensing.visionLibrary;
 
-@Autonomous
+@Autonomous (name = "HALAutoGold", group = "HAL")
 public class HALAutoGoldtwo extends LinearOpMode {
+
+/* Code for HAL */
 
 
     encoderLibrary enc;
     visionLibrary vis;
     int position;
-    DcMotor winchMotor;
-    DcMotor plow;
-    CRServo marker,crater;
-    ElapsedTime etime = new ElapsedTime();
+    DcMotor arm1;
+    DcMotor arm2;
+    CRServo introtL;
+    CRServo introtR;
+    CRServo intR;
+    CRServo intL;
+    CRServo hook;
+    Servo lift1;
+    Servo lift2;
+    Servo lift3;
+    Servo lift4;
 
+    ElapsedTime etime = new ElapsedTime();
 
     public void waitFor(int time){
         time = time/1000;
@@ -35,12 +46,20 @@ public class HALAutoGoldtwo extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        winchMotor = hardwareMap.dcMotor.get("winch");
-        winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        plow = hardwareMap.dcMotor.get("plow");
-        plow.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        marker = hardwareMap.crservo.get("marker");
-        crater = hardwareMap.crservo.get("crater");
+
+        arm1 = hardwareMap.dcMotor.get("arm1");
+        arm2 = hardwareMap.dcMotor.get("arm2");
+        introtL= hardwareMap.crservo.get("introtL");
+        introtR = hardwareMap.crservo.get("introtR");
+        intL = hardwareMap.crservo.get("intL");
+        intR = hardwareMap.crservo.get("intR");
+        hook = hardwareMap.crservo.get("hook");
+        lift1 = hardwareMap.servo.get("lift1");
+        lift2 = hardwareMap.servo.get("lift2");
+        lift3 = hardwareMap.servo.get("lift3");
+        lift4 = hardwareMap.servo.get("lift4");
+
+
 
         enc = new encoderLibrary(hardwareMap, telemetry,this);
         enc.init();
@@ -57,86 +76,121 @@ public class HALAutoGoldtwo extends LinearOpMode {
 
         vis.camFlash(false);
 
-//        enc.gyroHold(-0.2, 45, 3);
-//        enc.gyroHold(0.2, 45, 3);
-//        enc.gyroHold(-0.2, -45, 3);
+        //        enc.gyroHold(-0.2, 45, 3);
+        //        enc.gyroHold(0.2, 45, 3);
+        //        enc.gyroHold(-0.2, -45, 3);
 //        enc.gyroHold(0.2, -45, 3);
+
+
+
 
 
         //1. Drop down from the latch
 
-        winchMotor.setPower(1);
-        waitFor(3250);
-        winchMotor.setPower(0);
-        plow.setPower(0);
+        lift1.setPosition(0.75);
+        lift2.setPosition(0.75);
+        lift3.setPosition(0.75);
+        lift4.setPosition(0.75);
+        hook.setPower(-1);
 
 
-        //2. turn to the center
 
-        enc.gyroHold(0.4, 90, 250);
-        winchMotor.setPower(0);
+
+
+        //2. Strafe to the left
+
+        enc.gyroStrafeDistance(0.4, 3, 0, false);
+        enc.gyroStrafeDistance(0.4, 3
+                , 0, false);
+
+
 
         //3.1. Come forward
 
         enc.gyroDrive(0.4, 3,0,false);
-        waitFor(200);
+        waitFor(1000);
+        waitFor(500);
 
         //3.2. Re-center
 
         enc.gyroStrafeDistance(0.4,-3, 0, false);
-        waitFor(200);
+        waitFor(1000);
+        waitFor(500);
 
 
         //4. Sample gold mineral
 
         enc.gyroDrive(0.3, 9, 0, false);
+        waitFor(1000);
+
         waitFor(500);
         if(position == 0){
-            enc.gyroHold(0.4, 45, 250);
-//          put out outtake and pickup gold mineral.
-            enc.gyroHold(-0.4,-45,250);
-            enc.gyroStrafeDistance(0.4, 2,0,false);
-           // put out outtake into depot
-            enc.gyroStrafeDistance(0.4, -2,0,false);
-
+            enc.gyroStrafeDistance(0.3,16.97+3, 0,false);
+            waitFor(500);
+            enc.gyroDrive(0.4, 18, 0, false);
+            waitFor(500);
+            enc.gyroDrive(0.4, -18, 0, false);
+            waitFor(1000);
+            enc.gyroDrive(0.4, 24, 0, false);
+            waitFor(1000);
+//            enc.gyroHold(0.2, 45, 3);
+//            enc.gyroDrive(0.4,6,0,false);
+//            waitFor(500);
+            enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
         } else if (position == 2) {
-            enc.gyroHold(-0.4, -45, 250);
-//          put out outake and pickup gold mineral.
-            enc.gyroHold(0.4,45,250);
-            enc.gyroStrafeDistance(0.4, -2,0,false);
-            // put out outtake into depot
-            enc.gyroStrafeDistance(0.4, 2,0,false);
+            enc.gyroStrafeDistance(0.3,-16.97+3, 0,false);
+            waitFor(1000);
+            enc.gyroDrive(0.4, 24, 0, false);
+            waitFor(1000);
+            enc.gyroHold(-0.2, 45, 3);
+            enc.gyroDrive(0.4,6,0,false);
+            enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
+            waitFor(500);
+        } else {
+            enc.gyroDrive(0.4, 26, 0, false);
+            enc.gyroDrive(0.4, 18, 0, false);
+            waitFor(500);
+            enc.gyroDrive(0.4, -18, 0, false);
+            waitFor(1000);
+        }
 
 
-        } else
-            {
-            // put out outtake all the way to depot
-                enc.gyroDrive(0.4, 15, 0, false);
-                waitFor(500);
-                enc.gyroDrive(0.4, -15, 0, false);
 
 
-            }
+        //5. Drive clear of sample field
 
-//        enc.gyroStrafeDistance(0.4, -52, 0, false);
-//        waitFor(250);
-//        enc.gyroHold(0.2, -215 + 195    , 3);
-//        waitFor(200);
-//        enc.gyroStrafeDistance(0.2,-5,0,false);
-//        waitFor(200);
-//        enc.gyroDrive(0.4, 28, 0, false);
-//        waitFor(200);
-//        // intake put out and place marker in depot
-//        enc.gyroDrive(0.4, -28, 0, false);
-//        waitFor(200);
-//        enc.gyroHold(0.2, 215 + -195    , 3);
-//        waitFor(200);
-//        enc.gyroDrive(0.4, 4, 0, false);
-//        enc.gyroStrafeDistance(0.4, 5,0,false);
-//        //put out intake and score in lander
-//        //do as many times as we can
-//        crater.setPower(1);
-//        waitFor(250);
+
+
+
+
+        //7. Drop off team marker
+
+
+        enc.gyroStrafeDistance(0.3,16.97+3, 0,false);
+        enc.gyroStrafeDistance(0.4, 52, 0, false);
+        waitFor(250);
+        enc.gyroHold(-0.2, -50, 3);
+        enc.gyroStrafeDistance(0.4, 1.5, 0, false);
+        enc.gyroDrive(0.4, 50, 0, false);
+
+
+        waitFor(1000);
+        enc.gyroDrive(0.8, -75 / 2, 0, false);
+        waitFor(500);
+
+//        //8. Turn towards crater
+
+        enc.gyroHold(-0.2,135, 5);
+        enc.gyroDrive(0.8, 30, 0, false);
+
+
+//
+
+
+
+
 
     }
+
+
 }

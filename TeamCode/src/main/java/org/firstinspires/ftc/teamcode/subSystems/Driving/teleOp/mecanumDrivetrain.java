@@ -32,8 +32,8 @@ public class mecanumDrivetrain {
         telemetry = _telemetry;
 
         //configuring the components
-        winchMotor = hardwareMap.dcMotor.get("winch");
-        winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        /*winchMotor = hardwareMap.dcMotor.get("winch");
+        winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);*/
 
         lr = hardwareMap.dcMotor.get("leftB");
         lf = hardwareMap.dcMotor.get("leftF");
@@ -152,7 +152,7 @@ public class mecanumDrivetrain {
         telemetry.addData("RR ", rr.getCurrentPosition());
     }
 
-    public void winch(double power) { winchMotor.setPower(power);}
+    //public void winch(double power) { winchMotor.setPower(power);}
 
     public void drive(Gamepad gamepad1, Telemetry telemetry) {
         loop();
