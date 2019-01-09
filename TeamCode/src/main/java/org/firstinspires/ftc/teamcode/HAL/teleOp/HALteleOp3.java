@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.subSystems.Driving.teleOp.mecanumDrivetrain;
 
-@TeleOp(name = "HAL TeleOp3", group = "HAL")
+@TeleOp(name = "HAL TeleOp", group = "HAL")
 public class HALteleOp3 extends OpMode {
 
     private mecanumDrivetrain robot;

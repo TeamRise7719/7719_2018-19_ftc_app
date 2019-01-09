@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.HAL.teleOp;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -10,7 +11,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.subSystems.Driving.teleOp.mecanumDrivetrain;
-
+@Disabled
 @TeleOp(name = "HAL TeleOp", group = "HAL")
 public class HALTeleOp2 extends OpMode {
 
