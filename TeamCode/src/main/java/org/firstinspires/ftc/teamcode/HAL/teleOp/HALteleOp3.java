@@ -61,6 +61,12 @@ public class HALteleOp3 extends OpMode {
         armR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         hook.setPower(1);
 
+        lift1.setPosition(0.25);
+        lift1.setPosition(0.25);
+        lift2.setPosition(0.25);
+        lift3.setPosition(0.25);
+        lift4.setPosition(0.25);
+
 
 
     }
@@ -88,9 +94,7 @@ public class HALteleOp3 extends OpMode {
             lift3.setPosition(0.25);
             lift4.setPosition(0.25);
         }
-        if (gamepad2.a){
-            hook.setPower(1);
-        }
+
         if (gamepad2.b){
             hook.setPower(-1);
         }
@@ -107,8 +111,19 @@ public class HALteleOp3 extends OpMode {
         telemetry.addData("armR", armR.getCurrentPosition());
         telemetry.addData("armL", armL.getCurrentPosition());
 
-
+      if (gamepad2.y){
+            wristL.setPower(-0.15);
+            wristR.setPower(0.15);
         }
+        if (gamepad2.a){
+            wristL.setPower(1);
+            wristR.setPower(-1);
+        }
+
+
+
+
+    }
 
         }
 
