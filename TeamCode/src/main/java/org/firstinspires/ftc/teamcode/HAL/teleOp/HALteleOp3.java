@@ -59,7 +59,7 @@ public class HALteleOp3 extends OpMode {
         armR.setDirection(DcMotorSimple.Direction.REVERSE);
         armL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        hook.setPower(1);
+        
 
 
 
@@ -90,9 +90,14 @@ public class HALteleOp3 extends OpMode {
         }
         if (gamepad2.a){
             hook.setPower(1);
+        } else {
+            hook.setPower(0);
         }
+        
         if (gamepad2.b){
             hook.setPower(-1);
+        } else {
+        hook.setPower(0); 
         }
 
         shoulderR.setPower(gamepad2.left_trigger - gamepad2.right_trigger);
