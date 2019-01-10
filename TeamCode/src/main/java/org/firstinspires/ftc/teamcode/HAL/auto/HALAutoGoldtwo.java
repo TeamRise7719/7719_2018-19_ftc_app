@@ -135,9 +135,10 @@ public class HALAutoGoldtwo extends LinearOpMode {
             enc.gyroHold(0.3, 45,250);
             armR.setPower(1);
             armL.setPower(-1);
-            waitFor(3000);
+            waitFor(1500);
             armR.setPower(-1);
             armL.setPower(1);
+            waitFor(1500);
             enc.gyroHold(0.3, -45,250);
 //            enc.gyroHold(0.2, 45, 3);
 //            enc.gyroDrive(0.4,6,0,false);
@@ -152,12 +153,27 @@ public class HALAutoGoldtwo extends LinearOpMode {
 //            enc.gyroDrive(0.4,6,0,false);
 //            enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
 //            waitFor(500);
+            enc.gyroHold(0.3, -45,250);
+            armR.setPower(1);
+            armL.setPower(-1);
+            waitFor(1500);
+            armR.setPower(-1);
+            armL.setPower(1);
+            waitFor(1500);
+            enc.gyroHold(0.3, 45,250);
+
         } else {
-            enc.gyroDrive(0.4, 26, 0, false);
-            enc.gyroDrive(0.4, 18, 0, false);
-            waitFor(500);
-            enc.gyroDrive(0.4, -18, 0, false);
-            waitFor(1000);
+//            enc.gyroDrive(0.4, 26, 0, false);
+//            enc.gyroDrive(0.4, 18, 0, false);
+//            waitFor(500);
+//            enc.gyroDrive(0.4, -18, 0, false);
+//            waitFor(1000);
+            armR.setPower(1);
+            armL.setPower(-1);
+            waitFor(1500);
+            armR.setPower(-1);
+            armL.setPower(1);
+
         }
 
 
