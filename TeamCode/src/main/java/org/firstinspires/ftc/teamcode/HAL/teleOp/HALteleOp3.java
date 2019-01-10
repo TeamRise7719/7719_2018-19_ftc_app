@@ -20,8 +20,7 @@ public class HALteleOp3 extends OpMode {
     DcMotor shoulderL;
     DcMotor shoulderR;
     DcMotor armL, armR;
-//    CRServo wristR, wristL;
-    CRServo intR, intL,hook;
+    CRServo wristR, wristL, intR, intL,hook;
 
 
     Telemetry tele;
@@ -45,17 +44,14 @@ public class HALteleOp3 extends OpMode {
         intL = hardwareMap.crservo.get("intL");
 
 
-//        wristR = hardwareMap.crservo.get("wristR");
-//        wristL = hardwareMap.crservo.get("wristL");
+        wristR = hardwareMap.crservo.get("wristR");
+        wristL = hardwareMap.crservo.get("wristL");
 
 
         shoulderL = hardwareMap.dcMotor.get("shoulderL");
         shoulderR = hardwareMap.dcMotor.get("shoulderR");
         shoulderL.setDirection(DcMotorSimple.Direction.FORWARD);
         shoulderR.setDirection(DcMotorSimple.Direction.REVERSE);
-        shoulderL.setZeroPowerBehavior(shoulderL.getZeroPowerBehavior());
-        shoulderR.setZeroPowerBehavior(shoulderR.getZeroPowerBehavior());
-
 
         armL = hardwareMap.dcMotor.get("armL");
         armR = hardwareMap.dcMotor.get("armR");
@@ -63,9 +59,6 @@ public class HALteleOp3 extends OpMode {
         armR.setDirection(DcMotorSimple.Direction.REVERSE);
         armL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        armL.setZeroPowerBehavior(armL.getZeroPowerBehavior());
-        armR.setZeroPowerBehavior(armR.getZeroPowerBehavior());
-
         hook.setPower(1);
 
 
