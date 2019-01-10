@@ -74,14 +74,14 @@ public class HALteleOp3 extends OpMode {
     @Override
     public void loop() {
 
-        //------------------------------------=+(Drivetrain)+=-----------------------------------\\
+        //------------------------------------=+(Drivetrain)+=------------------------------------\\
         robot.drive(gamepad1, telemetry);
 
         if (gamepad1.x) {
             robot.resetHeading();
         }
 
-        //------------------------------------=+(Drivetrain)+=-----------------------------------\\
+        //------------------------------------=+(Drivetrain)+=------------------------------------\\
 
         if (gamepad2.left_bumper) {
             lift1.setPosition(0.75);
@@ -99,14 +99,14 @@ public class HALteleOp3 extends OpMode {
             hook.setPower(-1);
         }
 
-        shoulderR.setPower(gamepad2.left_trigger - gamepad2.right_trigger);
-        shoulderL.setPower(gamepad2.left_trigger - gamepad2.right_trigger);
+        shoulderR.setPower(gamepad2.left_stick_y);
+        shoulderL.setPower(gamepad2.left_stick_y);
 
         armR.setPower(gamepad2.right_stick_y);
         armL.setPower(gamepad2.right_stick_y);
 
-        intL.setPower(gamepad2.left_stick_y);
-        intR.setPower(-gamepad2.left_stick_y);
+        intL.setPower(gamepad2.right_trigger - gamepad2.left_trigger);
+        intR.setPower(-gamepad2.left_trigger - gamepad2.right_trigger);
 
         telemetry.addData("armR", armR.getCurrentPosition());
         telemetry.addData("armL", armL.getCurrentPosition());
@@ -119,6 +119,7 @@ public class HALteleOp3 extends OpMode {
             wristL.setPower(1);
             wristR.setPower(-1);
         }
+
 
 
 

@@ -161,7 +161,7 @@ public class mecanumDrivetrain {
         final double y = gamepad1.left_stick_y;
 
         final double rotation = -(gamepad1.right_stick_x);
-        final double direction = Math.atan2(x, y) + getHeading();
+        final double direction = Math.atan2(x, y) + getHeading() + Math.PI;
         final double speed = Math.min(1.0, Math.sqrt(x * x + y * y));
 
         final double lf = speed * Math.sin(direction + Math.PI / 4.0) + rotation;
@@ -170,7 +170,7 @@ public class mecanumDrivetrain {
         final double rr = speed * Math.sin(direction + Math.PI / 4.0) - rotation;
 
 
-        setMotors(lf * lf * lf, lr * lr * lr, rf * rf * rf, rr * rr * rr);
+        setMotors(lf, lr, rf, rr);
 
 
         telemetry.addData("Speeds","%f,%f,%f,%f", lf,rf,lr,rr);
