@@ -104,6 +104,9 @@ public class HALteleOp3 extends OpMode {
         intL.setPower(gamepad2.left_stick_y);
         intR.setPower(-gamepad2.left_stick_y);
 
+        telemetry.addData("armR", armR.getCurrentPosition());
+        telemetry.addData("armL", armL.getCurrentPosition());
+
 
         }
 

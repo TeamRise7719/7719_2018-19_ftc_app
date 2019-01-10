@@ -87,21 +87,20 @@ public class HALAutoGoldtwo extends LinearOpMode {
 
         //1. Drop down from the latch
 
-        lift1.setPosition(0.75);
-        lift2.setPosition(0.75);
-        lift3.setPosition(0.75);
-        lift4.setPosition(0.75);
-        hook.setPower(-1);
-
+//        lift1.setPosition(0.75);
+//        lift2.setPosition(0.75);
+//        lift3.setPosition(0.75);
+//        lift4.setPosition(0.75);
+//        hook.setPower(-1);
+//
 
 
 
 
         //2. Strafe to the left
 
-        enc.gyroStrafeDistance(0.4, 3, 0, false);
-        enc.gyroStrafeDistance(0.4, 3
-                , 0, false);
+//        enc.gyroStrafeDistance(0.4, 3, 0, false);
+//        enc.gyroStrafeDistance(0.4, 3, 0, false);
 
 
 
@@ -166,7 +165,7 @@ public class HALAutoGoldtwo extends LinearOpMode {
         //7. Drop off team marker
 
 
-        enc.gyroStrafeDistance(0.3,16.97+3, 0,false);
+//        enc.gyroStrafeDistance(0.3,16.97+3, 0,false);
         enc.gyroStrafeDistance(0.4, 52, 0, false);
         waitFor(250);
         enc.gyroHold(-0.2, -50, 3);
@@ -180,8 +179,8 @@ public class HALAutoGoldtwo extends LinearOpMode {
 
 //        //8. Turn towards crater
 
-        enc.gyroHold(-0.2,135, 5);
-        enc.gyroDrive(0.8, 30, 0, false);
+//        enc.gyroHold(-0.2,135, 5);
+//        enc.gyroDrive(0.8, 30, 0, false);
 
 
 //

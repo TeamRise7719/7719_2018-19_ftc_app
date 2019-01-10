@@ -3,6 +3,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.subSystems.Driving.autonomous.encoderLibrary;
@@ -15,9 +17,20 @@ public class HALAutoSilver2 extends LinearOpMode {
     encoderLibrary enc;
     visionLibrary vis;
     int position;
-    DcMotor winchMotor;
-    DcMotor plow;
-    CRServo marker,crater;
+    DcMotor shoulderL;
+    DcMotor shoulderR;
+    DcMotor armL;
+    DcMotor armR;
+    CRServo intR;
+    CRServo intL;
+    CRServo hook;
+    Servo lift1;
+    Servo lift2;
+    Servo lift3;
+    Servo lift4;
+    CRServo wristR, wristL;
+
+
     ElapsedTime etime = new ElapsedTime();
 
 
@@ -33,13 +46,35 @@ public class HALAutoSilver2 extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        winchMotor = hardwareMap.dcMotor.get("winch");
-        winchMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        plow = hardwareMap.dcMotor.get("plow");
-        plow.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        marker = hardwareMap.crservo.get("marker");
-        crater = hardwareMap.crservo.get("crater");
+        lift1 = hardwareMap.servo.get("lift1");
+        lift2 = hardwareMap.servo.get("lift2");
+        lift3 = hardwareMap.servo.get("lift3");
+        lift4 = hardwareMap.servo.get("lift4");
 
+
+        hook = hardwareMap.crservo.get("hook");
+
+
+        intR = hardwareMap.crservo.get("intR");
+        intL = hardwareMap.crservo.get("intL");
+
+
+        wristR = hardwareMap.crservo.get("wristR");
+        wristL = hardwareMap.crservo.get("wristL");
+
+
+        shoulderL = hardwareMap.dcMotor.get("shoulderL");
+        shoulderR = hardwareMap.dcMotor.get("shoulderR");
+        shoulderL.setDirection(DcMotorSimple.Direction.FORWARD);
+        shoulderR.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        armL = hardwareMap.dcMotor.get("armL");
+        armR = hardwareMap.dcMotor.get("armR");
+        armL.setDirection(DcMotorSimple.Direction.FORWARD);
+        armR.setDirection(DcMotorSimple.Direction.REVERSE);
+        armL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        armR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        hook.setPower(1);
         enc = new encoderLibrary(hardwareMap, telemetry,this);
         enc.init();
 
@@ -62,17 +97,20 @@ public class HALAutoSilver2 extends LinearOpMode {
 
 
         //1. Drop down from the latch
+//        lift1.setPosition(0.75);
+//        lift2.setPosition(0.75);
+//        lift3.setPosition(0.75);
+//        lift4.setPosition(0.75);
+//        hook.setPower(-1);
+//
 
-        winchMotor.setPower(1);
-        waitFor(3250);
-        winchMotor.setPower(0);
-        plow.setPower(0);
 
 
-        //2. turn to the center
 
-        enc.gyroHold(0.4, 90, 250);
-        winchMotor.setPower(0);
+        //2. strafe off
+        enc.gyroStrafeDistance(0.4,3,0,false);
+
+
 
         //3.1. Come forward
 
