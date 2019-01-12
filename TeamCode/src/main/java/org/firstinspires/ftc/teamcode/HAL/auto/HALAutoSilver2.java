@@ -74,7 +74,6 @@ public class HALAutoSilver2 extends LinearOpMode {
         armR.setDirection(DcMotorSimple.Direction.REVERSE);
         armL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        hook.setPower(1);
         enc = new encoderLibrary(hardwareMap, telemetry,this);
         enc.init();
 

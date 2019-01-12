@@ -49,22 +49,34 @@ public class HALAutoGoldtwo extends LinearOpMode {
 
         armR = hardwareMap.dcMotor.get("armR");
         armL = hardwareMap.dcMotor.get("armL");
-        armL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        armR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        armL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        armR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         shoulderL = hardwareMap.dcMotor.get("shoulderL");
         shoulderR = hardwareMap.dcMotor.get("shoulderR");
+
         intL = hardwareMap.crservo.get("intL");
         intR = hardwareMap.crservo.get("intR");
+
         hook = hardwareMap.crservo.get("hook");
+
         lift1 = hardwareMap.servo.get("lift1");
         lift2 = hardwareMap.servo.get("lift2");
         lift3 = hardwareMap.servo.get("lift3");
         lift4 = hardwareMap.servo.get("lift4");
+
         wristR = hardwareMap.crservo.get("wristR");
         wristL = hardwareMap.crservo.get("wristL");
+
+
+        lift1.setPosition(0.25);
+        lift1.setPosition(0.25);
+        lift2.setPosition(0.25);
+        lift3.setPosition(0.25);
+        lift4.setPosition(0.25);
+
 
 
 
@@ -132,82 +144,96 @@ public class HALAutoGoldtwo extends LinearOpMode {
 
         waitFor(500);
         if(position == 0){
-//            enc.gyroStrafeDistance(0.3,16.97+3, 0,false);
-//            waitFor(500);
-//            enc.gyroDrive(0.4, 18, 0, false);
-//            waitFor(500);
-//            enc.gyroDrive(0.4, -18, 0, false);
-//            waitFor(1000);
+            enc.gyroDrive(0.4,-8,0,false);
+            enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
+            waitFor(500);
+            enc.gyroDrive(0.4, -18, 0, false);
+            waitFor(500);
+            enc.gyroDrive(0.4, 18, 0, false);
+            waitFor(1000);
 //            enc.gyroDrive(0.4, -24, 0, false);
 //            waitFor(1000);
 
-            enc.gyroHold(0.3, 47,2);
-            waitFor(100);
-            armR.setPower(0.5);
-            armL.setPower(-0.5);
-            waitFor(100);
-            armR.setPower(-0.5);
-            armL.setPower(0.5);
-            waitFor(100);
-            enc.gyroHold(0.3, -47,2);
+//            enc.gyroHold(0.3, 47,2);
+//            waitFor(100);
+//            armR.setPower(0.5);
+//            armL.setPower(-0.5);
+//            waitFor(100);
+//            armR.setPower(-0.5);
+//            armL.setPower(0.5);
+//            waitFor(100);
+//            enc.gyroHold(0.3, -47,2);
 
 //            enc.gyroHold(0.2, 45, 3);
 //            enc.gyroDrive(0.4,6,0,false);
-//            waitFor(500);
-//            enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
-        } else if (position == 2) {
-//            enc.gyroStrafeDistance(0.3,-16.97+3, 0,false);
-//            waitFor(1000);
-//            enc.gyroDrive(0.4, -24, 0, false);
-//            waitFor(1000);
-//            enc.gyroHold(-0.2, 45, 3);
-//            enc.gyroDrive(0.4,6,0,false);
-//            enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
-//            waitFor(500);
+            waitFor(500);
+            enc.gyroStrafeDistance(0.3,16.97+3,0,false);
 
-            enc.gyroHold(0.3, 50,2);
-            armR.setTargetPosition(2100);
-            armL.setTargetPosition(2100);
-            waitFor(900);
-            armR.setTargetPosition(-2100);
-            armL.setTargetPosition(-2100);
-            waitFor(900);
-            enc.gyroHold(0.3, -50,2);
+
+        } else if (position == 2) {
+           enc.gyroDrive(0.4,-8,0,false);
+        enc.gyroStrafeDistance(0.3,16.97+3,0,false);
+            waitFor(1000);
+            enc.gyroDrive(0.4, -18, 0, false);
+            waitFor(1000);
+            enc.gyroHold(-0.2, 45, 3);
+            enc.gyroDrive(0.4,18,0,false);
+            enc.gyroStrafeDistance(0.3,-16.97-3,0,false);
+            waitFor(500);
 
         } else {
-//            enc.gyroDrive(0.4, -26, 0, false);
-//            enc.gyroDrive(0.4, 20, 0, false);
-//            waitFor(1000);
-
+            enc.gyroDrive(0.4, -26,0, false);
+            enc.gyroDrive(0.4, 20,0, false);
+            waitFor(1000);
             wristL.setPower(1);
             wristR.setPower(-1);
             waitFor(500);
-            intR.setPower(-0.7);
-            intL.setPower(0.7);
-            armR.setTargetPosition(2100);
-            armL.setTargetPosition(2100);
-            armL.setPower(0.5);
-            armR.setPower(-0.5);
+//            intR.setPower(-0.7);
+//            intL.setPower(0.7);
+//            armL.setTargetPosition(500);
+//            armR.setTargetPosition(500);
+//            armL.setPower(0.25);
+//            armR.setPower(-0.25);
+//            armR.setTargetPosition(2100);
+//            armL.setTargetPosition(2100);
+//            armL.setPower(0.5);
+//            armR.setPower(-0.5)-
 
         }
+        enc.gyroDrive(0.4,-8,0,false);
+        enc.gyroStrafeDistance(0.3,16.97+3,0,false);
+            waitFor(1000);
+            enc.gyroDrive(0.4, -18, 0, false);
+            waitFor(1000);
+//            enc.gyroHold(-0.2, 45, 3);
+            enc.gyroDrive(0.4,18,0,false);
+            enc.gyroStrafeDistance(0.3,-16.97-3,0,false);
+            waitFor(500);
 
-
+            //enc.gyroHold(0.3, 50,2);
+//            armR.setTargetPosition(2100);
+//            armL.setTargetPosition(2100);
+//            waitFor(900);
+//            armR.setTargetPosition(-2100);
+//            armL.setTargetPosition(-2100);
+//            waitFor(900);
+            //enc.gyroHold(0.3, -50,2);
 
         //5. Drop off team marker
-        intL.setPower(-1);
-        intR.setPower(1);
-        waitFor(2000);
-        armR.setTargetPosition(-2100);
-        armL.setTargetPosition(-2100);
-        waitFor(250);
-
+//        intL.setPower(-1);
+//        intR.setPower(1);
+//        waitFor(2000);
+//        armR.setTargetPosition(-2100);
+//        armL.setTargetPosition(-2100);
+//        waitFor(250);
+//
 
         //6. Drive clear of sample field
-        enc.gyroDrive(0.4, -3,0,false);
-        enc.gyroStrafeDistance(0.4, -52, 0, false);
+        //enc.gyroDrive(0.4, -5,0,false);
+        enc.gyroStrafeDistance(0.4, -60, 0, false);
         waitFor(250);
         enc.gyroHold(-0.2, -50, 3);
-        enc.gyroStrafeDistance(0.4, 1.5, 0, false);
+        enc.gyroStrafeDistance(0.4, -2.5, 0, false);
         enc.gyroDrive(0.4, 20, 0, false);
 //
 //
