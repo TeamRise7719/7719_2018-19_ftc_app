@@ -59,6 +59,10 @@ public class HALteleOp3 extends OpMode {
         armR.setDirection(DcMotorSimple.Direction.REVERSE);
         armL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        armL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        armR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+
         hook.setPower(1);
 
         lift1.setPosition(0.25);
@@ -102,8 +106,8 @@ public class HALteleOp3 extends OpMode {
         shoulderR.setPower(gamepad2.left_stick_y);
         shoulderL.setPower(gamepad2.left_stick_y);
 
-        armR.setPower(gamepad2.right_stick_y);
-        armL.setPower(gamepad2.right_stick_y);
+        armR.setPower(gamepad2.right_stick_y/2.0);
+        armL.setPower(gamepad2.right_stick_y/2.0);
 
         intL.setPower(gamepad2.right_trigger - gamepad2.left_trigger);
         intR.setPower(-gamepad2.left_trigger - gamepad2.right_trigger);
@@ -118,6 +122,10 @@ public class HALteleOp3 extends OpMode {
         if (gamepad2.a){
             wristL.setPower(1);
             wristR.setPower(-1);
+        }
+        if (gamepad2.x){
+          armR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+          armL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
 
 

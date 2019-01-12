@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.subSystems.Driving.autonomous.encoderLibrary;
 import org.firstinspires.ftc.teamcode.subSystems.Sensing.visionLibrary;
 
-@Autonomous (name = "HALAutoGold", group = "HAL")
+@Autonomous
 public class HALAutoGoldtwo extends LinearOpMode {
 
 /* Code for HAL */
@@ -22,8 +22,8 @@ public class HALAutoGoldtwo extends LinearOpMode {
     int position;
     DcMotor armR;
     DcMotor armL;
-    CRServo introtL;
-    CRServo introtR;
+    DcMotor shoulderR;
+    DcMotor shoulderL;
     CRServo intR;
     CRServo intL;
     CRServo hook;
@@ -49,8 +49,8 @@ public class HALAutoGoldtwo extends LinearOpMode {
 
         armR = hardwareMap.dcMotor.get("armR");
         armL = hardwareMap.dcMotor.get("armL");
-        introtL= hardwareMap.crservo.get("introtL");
-        introtR = hardwareMap.crservo.get("introtR");
+        shoulderR = hardwareMap.dcMotor.get("shoulderR");
+        shoulderL = hardwareMap.dcMotor.get("shoulderL");
         intL = hardwareMap.crservo.get("intL");
         intR = hardwareMap.crservo.get("intR");
         hook = hardwareMap.crservo.get("hook");
@@ -106,61 +106,65 @@ public class HALAutoGoldtwo extends LinearOpMode {
 
         //3.1. Come forward
 
-        enc.gyroDrive(0.4, 3,0,false);
+        enc.gyroDrive(0.4, -3,0,false);
         waitFor(1000);
         waitFor(500);
 
         //3.2. Re-center
 
-        enc.gyroStrafeDistance(0.4,-3, 0, false);
-        waitFor(1000);
-        waitFor(500);
+//        enc.gyroStrafeDistance(0.4,-3, 0, false);
+//        waitFor(1000);
+//        waitFor(500);
 
 
         //4. Sample gold mineral
 
-        enc.gyroDrive(0.3, 9, 0, false);
+        enc.gyroDrive(0.3, -9, 0, false);
         waitFor(1000);
 
         waitFor(500);
         if(position == 0){
-//            enc.gyroStrafeDistance(0.3,16.97+3, 0,false);
-//            waitFor(500);
+            enc.gyroStrafeDistance(0.3,16.97+3, 0,false);
+            waitFor(500);
 //            enc.gyroDrive(0.4, 18, 0, false);
 //            waitFor(500);
 //            enc.gyroDrive(0.4, -18, 0, false);
 //            waitFor(1000);
 //            enc.gyroDrive(0.4, 24, 0, false);
 //            waitFor(1000);
-            enc.gyroHold(0.3, 45,250);
+
+//            enc.gyroHold(0.3, 50,2);
             armR.setPower(1);
             armL.setPower(-1);
-            waitFor(1500);
+            waitFor(150);
             armR.setPower(-1);
             armL.setPower(1);
-            waitFor(1500);
-            enc.gyroHold(0.3, -45,250);
+            waitFor(150);
+//            enc.gyroHold(0.3, -50,2);
+
 //            enc.gyroHold(0.2, 45, 3);
 //            enc.gyroDrive(0.4,6,0,false);
 //            waitFor(500);
-//            enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
+            enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
         } else if (position == 2) {
-//            enc.gyroStrafeDistance(0.3,-16.97+3, 0,false);
-//            waitFor(1000);
+            enc.gyroStrafeDistance(0.3,-16.97+3, 0,false);
+            waitFor(1000);
 //            enc.gyroDrive(0.4, 24, 0, false);
 //            waitFor(1000);
 //            enc.gyroHold(-0.2, 45, 3);
 //            enc.gyroDrive(0.4,6,0,false);
-//            enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
-//            waitFor(500);
-            enc.gyroHold(0.3, -45,250);
+
+
+//            enc.gyroHold(0.3, 50,2);
             armR.setPower(1);
             armL.setPower(-1);
-            waitFor(1500);
+            waitFor(900);
             armR.setPower(-1);
             armL.setPower(1);
-            waitFor(1500);
-            enc.gyroHold(0.3, 45,250);
+            waitFor(900);
+//            enc.gyroHold(0.3, -50,2);
+            enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
+            waitFor(500);
 
         } else {
 //            enc.gyroDrive(0.4, 26, 0, false);
@@ -170,7 +174,7 @@ public class HALAutoGoldtwo extends LinearOpMode {
 //            waitFor(1000);
             armR.setPower(1);
             armL.setPower(-1);
-            waitFor(1500);
+            waitFor(900);
             armR.setPower(-1);
             armL.setPower(1);
 
