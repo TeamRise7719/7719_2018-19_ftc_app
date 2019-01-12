@@ -34,10 +34,10 @@ public class HALAutoSilver2 extends LinearOpMode {
     ElapsedTime etime = new ElapsedTime();
 
 
-    public void waitFor(int time){
-        time = time/1000;
+    public void waitFor(int time) {
+        time = time / 1000;
         etime.reset();
-        while ((etime.time() < time)&&(opModeIsActive())) {
+        while ((etime.time() < time) && (opModeIsActive())) {
             idle();
         }
     }
@@ -74,14 +74,14 @@ public class HALAutoSilver2 extends LinearOpMode {
         armR.setDirection(DcMotorSimple.Direction.REVERSE);
         armL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        enc = new encoderLibrary(hardwareMap, telemetry,this);
+        enc = new encoderLibrary(hardwareMap, telemetry, this);
         enc.init();
 
         vis = new visionLibrary(hardwareMap, telemetry);
         vis.initVuforia();
         vis.initTfod();
         vis.camFlash(true);
-        while(!isStarted()){
+        while (!isStarted()) {
             position = vis.objectVision();
         }
 
@@ -104,53 +104,55 @@ public class HALAutoSilver2 extends LinearOpMode {
 //
 
 
-
-
         //2. strafe off
-        enc.gyroStrafeDistance(0.4,3,0,false);
-
+        // enc.gyroStrafeDistance(0.4,-3,0,false);
 
 
         //3.1. Come forward
 
-        enc.gyroDrive(0.4, 3,0,false);
-        waitFor(200);
+        //enc.gyroDrive(0.4, -3,0,false);
+        // waitFor(200);
 
         //3.2. Re-center
 
-        enc.gyroStrafeDistance(0.4,-3, 0, false);
+        //enc.gyroStrafeDistance(0.4,-3, 0, false);
         waitFor(200);
 
 
         //4. Sample gold mineral
 
-        enc.gyroDrive(0.3, 9, 0, false);
+        enc.gyroDrive(0.3, -6, 0, false);
         waitFor(500);
-        if(position == 0){
+        if (position == 0) {
             enc.gyroHold(0.4, 45, 250);
 //          put out outtake and pickup gold mineral.
-            enc.gyroHold(-0.4,-45,250);
-            enc.gyroStrafeDistance(0.4, 2,0,false);
+            enc.gyroHold(-0.4, -45, 250);
+            enc.gyroStrafeDistance(0.4, 2, 0, false);
             // put out outtake into depot
-            enc.gyroStrafeDistance(0.4, -2,0,false);
+            enc.gyroStrafeDistance(0.4, -2, 0, false);
 
         } else if (position == 2) {
             enc.gyroHold(-0.4, -45, 250);
 //          put out outake and pickup gold mineral.
-            enc.gyroHold(0.4,45,250);
-            enc.gyroStrafeDistance(0.4, -2,0,false);
+            enc.gyroHold(0.4, 45, 250);
+            enc.gyroStrafeDistance(0.4, -2, 0, false);
             // put out outtake into depot
-            enc.gyroStrafeDistance(0.4, 2,0,false);
+            enc.gyroStrafeDistance(0.4, 2, 0, false);
 
 
-        } else
-        {
-            // put out outtake all the way to depot
-            enc.gyroDrive(0.4, 15, 0, false);
-            waitFor(500);
-            enc.gyroDrive(0.4, -15, 0, false);
+        } else {
 
-        }
+            enc.gyroDrive(0.4, -18, 0, false);
+            waitFor(1000);
+            enc.gyroDrive(0.4,12,0,false);
+//        }
+
+            enc.gyroStrafeDistance(0.4, -60, 0, false);
+            waitFor(250);
+            enc.gyroHold(-0.2, -125 , 3);
+            enc.gyroStrafeDistance(0.4, -2.5, 0, false);
+            enc.gyroDrive(0.4, -50, 0, false);
+            enc.gyroDrive(0.4, 50, 0, false);
 
 //        enc.gyroStrafeDistance(0.4, 52, 0, false);
 //        waitFor(250);
@@ -172,5 +174,6 @@ public class HALAutoSilver2 extends LinearOpMode {
 //        crater.setPower(1);
 //        waitFor(250);
 
+        }
     }
 }
