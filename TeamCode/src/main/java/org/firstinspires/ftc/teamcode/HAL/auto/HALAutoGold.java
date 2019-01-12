@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.subSystems.Driving.autonomous.encoderLibrary;
 import org.firstinspires.ftc.teamcode.subSystems.Sensing.visionLibrary;
 
-@Disabled
+
 @Autonomous
      public class HALAutoGold extends LinearOpMode {
 
@@ -47,7 +47,7 @@ import org.firstinspires.ftc.teamcode.subSystems.Sensing.visionLibrary;
         armR = hardwareMap.dcMotor.get("armR");
         armL = hardwareMap.dcMotor.get("armL");
         shoulderL = hardwareMap.dcMotor.get("shoulderL");
-        shoulderR = hardwareMap.dcMotor.get("ShoulderR");
+        shoulderR = hardwareMap.dcMotor.get("shoulderR");
         intL = hardwareMap.crservo.get("intL");
         intR = hardwareMap.crservo.get("intR");
         hook = hardwareMap.crservo.get("hook");
