@@ -57,10 +57,10 @@ public class HALteleOp3 extends OpMode {
         armR = hardwareMap.dcMotor.get("armR");
         armL.setDirection(DcMotorSimple.Direction.FORWARD);
         armR.setDirection(DcMotorSimple.Direction.REVERSE);
+        armR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        armR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        armR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        armR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
@@ -75,10 +75,15 @@ public class HALteleOp3 extends OpMode {
 
 
 
+
+
     }
 
     @Override
     public void loop() {
+
+
+
 
         //------------------------------------=+(Drivetrain)+=------------------------------------\\
         robot.drive(gamepad1, telemetry);
@@ -105,8 +110,11 @@ public class HALteleOp3 extends OpMode {
             hook.setPower(-1);
         }
 
+
         shoulderR.setPower(gamepad2.left_stick_y);
         shoulderL.setPower(gamepad2.left_stick_y);
+
+
 
         armR.setPower(gamepad2.right_stick_y/2.0);
         armL.setPower(gamepad2.right_stick_y/2.0);
@@ -120,24 +128,29 @@ public class HALteleOp3 extends OpMode {
         telemetry.addData("armR", armR.getCurrentPosition());
         telemetry.addData("armL", armL.getCurrentPosition());
 
-      if (gamepad2.y){
-            wristL.setPower(-0.15);
-            wristR.setPower(0.15);
+      if (gamepad2.a){
+            wristL.setPower(0.25);
+            wristR.setPower(-0.25);
         }
-        if (gamepad2.a){
+        else if (gamepad2.y){
             wristL.setPower(1);
             wristR.setPower(-1);
-        }
+        } else if (gamepad2.b){
+          wristL.setPower(-0.5);
+          wristR.setPower(0.5);
+
+
+      }
         if (gamepad2.x){
           armR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
           armL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
-        if (armR.getTargetPosition()  >= 4200 || armL.getTargetPosition() >= 4200){
-          Math.abs(gamepad2.right_stick_y * -1);
-
-        } else if (armR.getTargetPosition()  <= 150 || armL.getTargetPosition() <=150){
-          Math.abs(gamepad2.right_stick_y);
-        }
+//        if (armR.getTargetPosition()  >= 4200 || armL.getTargetPosition() >= 4200){
+//          Math.abs(gamepad2.right_stick_y * -1);
+//
+//        } else if (armR.getTargetPosition()  <= 150 || armL.getTargetPosition() <=150){
+//          Math.abs(gamepad2.right_stick_y);
+//        }
 
 
         if (gamepad2.dpad_down){

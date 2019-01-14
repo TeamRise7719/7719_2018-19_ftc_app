@@ -134,12 +134,13 @@ public class HALAutoSilver2 extends LinearOpMode {
             waitFor(1000);
 
         } else if (position == 2) {
-            enc.gyroHold(-0.4, -45, 250);
-//          put out outake and pickup gold mineral.
-            enc.gyroHold(0.4, 45, 250);
-            enc.gyroStrafeDistance(0.4, -2, 0, false);
-            // put out outtake into depot
-            enc.gyroStrafeDistance(0.4, 2, 0, false);
+            enc.gyroDrive(0.4,6,0,false);
+            enc.gyroStrafeDistance(0.3,16.97+3, 0,false);
+            waitFor(500);
+            enc.gyroDrive(0.4, 15, 0, false);
+            waitFor(500);
+            enc.gyroDrive(0.4, -13, 0, false);
+            waitFor(1000);
 
 
         } else {

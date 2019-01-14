@@ -48,16 +48,16 @@ public class encoderLibrary {
 
     public  final double     TURN_SPEED              = 0.4;     // Nominal half speed for better accuracy.
 
-    private static final double     HEADING_THRESHOLD       = 1 ;      // As tight as we can make it with an integer gyro
+    private static final double     HEADING_THRESHOLD       = 0.3 ;      // As tight as we can make it with an integer gyro
     private static final double     ENCODER_THRESHOLD       = 10;      // As tight as we can make it with an integer gyro
 
-    private static  double     P_TURN_COEFF            = 0.02;     // Larger is more responsive, but also less stable
-    private static  double     I_TURN_COEFF            = 0.001;     // Larger is more responsive, but also less stable
-    private static  double     D_TURN_COEFF            = 0.05;     // Larger is more responsive, but also less stable
+    private static  double     P_TURN_COEFF            = 0.074;     // Larger is more responsive, but also less stable
+    private static  double     I_TURN_COEFF            = 0.00;     // Larger is more responsive, but also less stable
+    private static  double     D_TURN_COEFF            = 0.116;     // Larger is more responsive, but also less stable
 
 
     private static final double     P_DRIVE_COEFF           = 0.16;     // Larger is more responsive, but also less stable
-    private static final double     ULTRA_COEFF           = 0.06;     // Larger is more responsive, but also less stable
+    private static final double     ULTRA_COEFF           = 0.07;     // Larger is more responsive, but also less stable
 
     public encoderLibrary(HardwareMap hardwareMap, Telemetry tel, LinearOpMode opMode) {
         gyro = hardwareMap.get(BNO055IMU.class, "imuINT");

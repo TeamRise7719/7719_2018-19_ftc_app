@@ -9,7 +9,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.subSystems.Driving.autonomous.encoderLibrary;
 import org.firstinspires.ftc.teamcode.subSystems.Sensing.visionLibrary;
-@Disabled
 @Autonomous
 
 public class HALTurnTest extends LinearOpMode{
@@ -34,7 +33,7 @@ public class HALTurnTest extends LinearOpMode{
 
         waitForStart();
 
-        enc.gyroHold(0.2, 45, 5);
+        enc.gyroTurn(0.7, 90);
 
 
 
