@@ -148,8 +148,10 @@ public class HALteleOp3 extends OpMode {
         }
 
 
-            intR.setPower(gamepad2.left_trigger - gamepad2.right_trigger);
-            intL.setPower(-gamepad2.left_trigger + gamepad2.right_trigger);
+//            intR.setPower(gamepad2.left_trigger - gamepad2.right_trigger);
+//            intL.setPower(-gamepad2.left_trigger + gamepad2.right_trigger);
+        intR.setPower(-gamepad2.right_trigger); intL.setPower(gamepad2.right_trigger);
+        intR.setPower(gamepad2.left_trigger); intL.setPower(-gamepad2.left_trigger);
 
 
 //        telemetry.addData("armR", armR.getCurrentPosition());
