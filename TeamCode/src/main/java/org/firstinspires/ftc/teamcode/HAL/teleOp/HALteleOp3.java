@@ -145,6 +145,7 @@ public class HALteleOp3 extends OpMode {
 
                 }
             }
+        }
 
 
             intR.setPower(gamepad2.left_trigger - gamepad2.right_trigger);
@@ -193,4 +194,3 @@ public class HALteleOp3 extends OpMode {
 
 
     }
-}

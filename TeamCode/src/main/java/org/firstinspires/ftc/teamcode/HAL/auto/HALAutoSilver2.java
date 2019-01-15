@@ -116,31 +116,28 @@ public class HALAutoSilver2 extends LinearOpMode {
         //3.2. Re-center
 
         //enc.gyroStrafeDistance(0.4,-3, 0, false);
-        //waitFor(200);
+        waitFor(200);
 
 
         //4. Sample gold mineral
 
         enc.gyroDrive(0.3, -6, 0, false);
         waitFor(500);
-
         if (position == 0) {
-            enc.gyroDrive(0.4,-6,0,false);
-            enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
-            waitFor(500);
-            enc.gyroDrive(0.4, -15, 0, false);
-            waitFor(500);
-            enc.gyroDrive(0.4, 13, 0, false);
-            waitFor(1000);
+            enc.gyroHold(0.4, 45, 250);
+//          put out outtake and pickup gold mineral.
+            enc.gyroHold(-0.4, -45, 250);
+            enc.gyroStrafeDistance(0.4, 2, 0, false);
+            // put out outtake into depot
+            enc.gyroStrafeDistance(0.4, -2, 0, false);
 
         } else if (position == 2) {
-            enc.gyroDrive(0.4,6,0,false);
-            enc.gyroStrafeDistance(0.3,16.97+3, 0,false);
-            waitFor(500);
-            enc.gyroDrive(0.4, 15, 0, false);
-            waitFor(500);
-            enc.gyroDrive(0.4, -13, 0, false);
-            waitFor(1000);
+            enc.gyroHold(-0.4, -45, 250);
+//          put out outake and pickup gold mineral.
+            enc.gyroHold(0.4, 45, 250);
+            enc.gyroStrafeDistance(0.4, -2, 0, false);
+            // put out outtake into depot
+            enc.gyroStrafeDistance(0.4, 2, 0, false);
 
 
         } else {
@@ -148,20 +145,35 @@ public class HALAutoSilver2 extends LinearOpMode {
             enc.gyroDrive(0.4, -18, 0, false);
             waitFor(1000);
             enc.gyroDrive(0.4,12,0,false);
-        }
+//        }
 
-
-
-
-            enc.gyroStrafeDistance(0.4, -45, 0, false);
+            enc.gyroStrafeDistance(0.4, -60, 0, false);
             waitFor(250);
-            enc.gyroHold(-0.2, -230 , 3);
-            enc.gyroStrafeDistance(0.4, 3, 0, false);
-            enc.gyroDrive(0.4, -30, 0, false);
-            waitFor(2000);
-            enc.gyroDrive(0.4, 60, 0, false);
+            enc.gyroHold(-0.2, -125 , 3);
+            enc.gyroStrafeDistance(0.4, -2.5, 0, false);
+            enc.gyroDrive(0.4, -50, 0, false);
+            enc.gyroDrive(0.4, 50, 0, false);
 
+//        enc.gyroStrafeDistance(0.4, 52, 0, false);
+//        waitFor(250);
+//        enc.gyroHold(0.2, -215 + 195    , 3);
+//        waitFor(200);
+//        enc.gyroStrafeDistance(0.2,-5,0,false);
+//        waitFor(200);
+//        enc.gyroDrive(0.4, 36, 0, false);
+//        waitFor(200);
 //
+//
+//
+//
+//        enc.gyroHold(0.4, 90, 250);
+//        enc.gyroDrive(0.4, 4, 0, false);
+//        enc.gyroStrafeDistance(0.4, 5,0,false);
+//        //put out intake and score in lander
+//        //do as many times as we can
+//        crater.setPower(1);
+//        waitFor(250);
 
+        }
     }
 }
