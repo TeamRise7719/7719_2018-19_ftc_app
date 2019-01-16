@@ -86,6 +86,7 @@ public class HALteleOp3 extends OpMode {
 
 
         //------------------------------------=+(Drivetrain)+=------------------------------------\\
+
         robot.drive(gamepad1, telemetry);
 
         if (gamepad1.x) {
@@ -94,16 +95,16 @@ public class HALteleOp3 extends OpMode {
 
         //------------------------------------=+(Drivetrain)+=------------------------------------\\
 
-        if (gamepad1.right_trigger > 0) {
-            lift1.setPosition(0.75);
-            lift2.setPosition(0.75);
-            lift3.setPosition(0.75);
-            lift4.setPosition(0.75);
-        } else if (gamepad1.left_trigger > 0) {
-            lift1.setPosition(0.25);
-            lift2.setPosition(0.25);
-            lift3.setPosition(0.25);
-            lift4.setPosition(0.25);
+        if (gamepad1.right_bumper) {
+            lift1.setPosition(0.8);
+            lift2.setPosition(0.8);
+            lift3.setPosition(0.8);
+            lift4.setPosition(0.8);
+        } else if (gamepad1.left_bumper) {
+            lift1.setPosition(0.21);
+            lift2.setPosition(0.21);
+            lift3.setPosition(0.21);
+            lift4.setPosition(0.21);
         }
 
         if (gamepad1.b) {

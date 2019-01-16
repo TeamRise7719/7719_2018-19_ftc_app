@@ -199,6 +199,7 @@ public class HALAutoGoldtwo extends LinearOpMode {
 //            armL.setPower(0.5);
 //            armR.setPower(-0.5)-
 
+
         }
         enc.gyroDrive(0.4,-8,0,false);
         enc.gyroStrafeDistance(0.3,16.97+3,0,false);
