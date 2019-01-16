@@ -116,43 +116,52 @@ public class HALteleOp3 extends OpMode {
         shoulderL.setPower(gamepad2.left_stick_y);
 
 
-        armR.setPower(gamepad2.right_stick_y / 2.0);
-        armL.setPower(gamepad2.right_stick_y / 2.0);
 
         if (gamepad2.right_stick_y != 0) {
 
             armR.setPower(gamepad2.right_stick_y / 2);
             armL.setPower(gamepad2.right_stick_y / 2);
+
             targetR = armR.getCurrentPosition();
             targetL = armL.getCurrentPosition();
-            if (gamepad2.right_stick_y == 0 && (targetR != armR.getCurrentPosition() || targetL != armL.getCurrentPosition())) {
+
+        } else if (gamepad2.right_stick_y == 0 && (targetR != armR.getCurrentPosition() || targetL != armL.getCurrentPosition())) {
 
                 if (targetR - armR.getCurrentPosition() > 0) {
                     if (targetL - armL.getCurrentPosition() > 0) {
+
                         armR.setPower(-.5);
                         armL.setPower(-.5);
+
                     } else if (targetL - armL.getCurrentPosition() < 0) {
+
                         armR.setPower(-.5);
                         armL.setPower(.5);
+
                     }
                 } else if (targetR - armR.getCurrentPosition() < 0) {
                     if (targetL - armL.getCurrentPosition() > 0) {
+
                         armR.setPower(.5);
                         armL.setPower(-.5);
+
                     } else if (targetL - armL.getCurrentPosition() < 0) {
+
                         armR.setPower(.5);
                         armL.setPower(.5);
+
                     }
 
                 }
-            }
+        } else {
+
+            armR.setPower(0);
+            armL.setPower(0);
+
         }
 
 
-//            intR.setPower(gamepad2.left_trigger - gamepad2.right_trigger);
-//            intL.setPower(-gamepad2.left_trigger + gamepad2.right_trigger);
-        intR.setPower(-gamepad2.right_trigger); intL.setPower(gamepad2.right_trigger);
-        intR.setPower(gamepad2.left_trigger); intL.setPower(-gamepad2.left_trigger);
+
 
 
 //        telemetry.addData("armR", armR.getCurrentPosition());
