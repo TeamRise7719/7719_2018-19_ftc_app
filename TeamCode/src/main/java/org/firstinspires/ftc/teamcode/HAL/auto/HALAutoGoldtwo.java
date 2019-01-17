@@ -111,22 +111,22 @@ public class HALAutoGoldtwo extends LinearOpMode {
         lift2.setPosition(0.8);
         lift3.setPosition(0.8);
         lift4.setPosition(0.8);
-        waitFor(4000);
+        waitFor(4500);
 
 
-        hook.setPower(-1);
-        waitFor(250);
+        hook.setPower(-0.65);
+        waitFor(1000);
 
         //2. Strafe to the left
 
-        enc.gyroStrafeDistance(0.4, 4, 0, false);
-        enc.gyroStrafeDistance(0.4, -4, 0, false);
+        enc.gyroStrafeDistance(0.4, 6, 0, false);
+        enc.gyroStrafeDistance(0.4, -6, 0, false);
         waitFor(250);
         lift1.setPosition(0.21);
         lift2.setPosition(0.21);
         lift3.setPosition(0.21);
         lift4.setPosition(0.21);
-        waitFor(2000);
+        waitFor(4500);
 
 
 
@@ -135,9 +135,9 @@ public class HALAutoGoldtwo extends LinearOpMode {
 
         //3.2. Re-center
 
-        enc.gyroStrafeDistance(0.4,-3, 0, false);
-        waitFor(1000);
-        waitFor(500);
+//        enc.gyroStrafeDistance(0.4,-3, 0, false);
+//        waitFor(1000);
+//        waitFor(500);
 
 
         //4. Sample gold mineral
@@ -183,8 +183,9 @@ public class HALAutoGoldtwo extends LinearOpMode {
             waitFor(500);
 
         } else {
-            enc.gyroDrive(0.4, -26,0, false);
-            enc.gyroDrive(0.4, 20,0, false);
+            waitFor(5000);
+            enc.gyroDrive(0.3, -29,0, false);
+            enc.gyroDrive(0.3, 18,0, false);
             waitFor(1000);
             wristL.setPower(1);
             wristR.setPower(-1);
@@ -236,7 +237,7 @@ public class HALAutoGoldtwo extends LinearOpMode {
         waitFor(250);
         enc.gyroHold(-0.2, -50, 3);
         enc.gyroStrafeDistance(0.4, -2.5, 0, false);
-        enc.gyroDrive(0.4, 20, 0, false);
+        enc.gyroDrive(0.4, -20, 0, false);
         waitFor(250);
         wristL.setPower(0.18);
         wristR.setPower(-0.18);
