@@ -39,8 +39,8 @@ public class HAL_Articulator {
 
         shoulderL = hardwareMap.dcMotor.get("shoulderL");
         shoulderR = hardwareMap.dcMotor.get("shoulderR");
-        shoulderL.setDirection(DcMotorSimple.Direction.FORWARD);
-        shoulderR.setDirection(DcMotorSimple.Direction.REVERSE);
+        shoulderL.setDirection(DcMotorSimple.Direction.REVERSE);
+        shoulderR.setDirection(DcMotorSimple.Direction.FORWARD);
 
 
         armL = hardwareMap.dcMotor.get("armL");
@@ -50,8 +50,8 @@ public class HAL_Articulator {
         armR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         armL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        armR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        armR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 
@@ -77,25 +77,25 @@ public class HAL_Articulator {
             if (targetR - armR.getCurrentPosition() > 0) {
                 if (targetL - armL.getCurrentPosition() > 0) {
 
-                    armR.setPower(-.5);
-                    armL.setPower(-.5);
+                    armR.setPower(.1);
+                    armL.setPower(.1);
 
                 } else if (targetL - armL.getCurrentPosition() < 0) {
 
-                    armR.setPower(-.5);
-                    armL.setPower(.5);
+                    armR.setPower(.1);
+                    armL.setPower(-.1);
 
                 }
             } else if (targetR - armR.getCurrentPosition() < 0) {
                 if (targetL - armL.getCurrentPosition() > 0) {
 
-                    armR.setPower(.5);
-                    armL.setPower(-.5);
+                    armR.setPower(-.1);
+                    armL.setPower(.1);
 
                 } else if (targetL - armL.getCurrentPosition() < 0) {
 
-                    armR.setPower(.5);
-                    armL.setPower(.5);
+                    armR.setPower(-.1);
+                    armL.setPower(-.1);
 
                 }
 
@@ -155,31 +155,31 @@ public class HAL_Articulator {
 
     private void wrist(Gamepad gamepad2){
 
-        if (gamepad2.a) { // Intake position
-
-            wristL.setPower(0.25);
-            wristR.setPower(-0.25);
-
-        } else if (gamepad2.y) { // Up (rest) position
-
-            wristL.setPower(-0.25);
-            wristR.setPower(0.25);
-
-        } else if (gamepad2.b) { // Scoring position
-
-            wristL.setPower(-0.25);
-            wristR.setPower(0.25);
-
-        }
+//        if (gamepad2.a) { // Intake position
+//
+//            wristL.setPower(0.18);
+//            wristR.setPower(-0.18);
+//
+//        } else if (gamepad2.y) { // Up (rest) position
+//
+//            wristL.setPower(-0.25);
+//            wristR.setPower(0.25);
+//
+//        } else if (gamepad2.b) { // Scoring position
+//
+//            wristL.setPower(-0.25);
+//            wristR.setPower(0.25);
+//
+//        }
 
         //This is for minor, on the fly adjustments
 
-        if (gamepad2.dpad_up) {
+        if (gamepad2.a) {
 
             wristL.setPower(wristL.getPower() + 0.05);
             wristR.setPower(wristR.getPower() - 0.05);
 
-        } else if (gamepad2.dpad_down) {
+        } else if (gamepad2.y) {
 
             wristL.setPower(wristL.getPower() - 0.05);
             wristR.setPower(wristR.getPower() + 0.05);

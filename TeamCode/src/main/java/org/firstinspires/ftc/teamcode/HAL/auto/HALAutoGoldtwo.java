@@ -71,11 +71,11 @@ public class HALAutoGoldtwo extends LinearOpMode {
         wristL = hardwareMap.crservo.get("wristL");
 
 
-        lift1.setPosition(0.25);
-        lift1.setPosition(0.25);
-        lift2.setPosition(0.25);
-        lift3.setPosition(0.25);
-        lift4.setPosition(0.25);
+        lift1.setPosition(0.21);
+        lift1.setPosition(0.21);
+        lift2.setPosition(0.21);
+        lift3.setPosition(0.21);
+        lift4.setPosition(0.21);
 
 
 
@@ -107,10 +107,10 @@ public class HALAutoGoldtwo extends LinearOpMode {
 
         //1. Drop down from the latch
 
-//        lift1.setPosition(0.75);
-//        lift2.setPosition(0.75);
-//        lift3.setPosition(0.75);
-//        lift4.setPosition(0.75);
+        lift1.setPosition(0.75);
+        lift2.setPosition(0.75);
+        lift3.setPosition(0.75);
+        lift4.setPosition(0.75);
 //        hook.setPower(-1);
 //
 
@@ -119,8 +119,12 @@ public class HALAutoGoldtwo extends LinearOpMode {
 
         //2. Strafe to the left
 
-//        enc.gyroStrafeDistance(0.4, 3, 0, false);
-//        enc.gyroStrafeDistance(0.4, 3, 0, false);
+        enc.gyroStrafeDistance(0.4, 4, 0, false);
+        enc.gyroStrafeDistance(0.4, -4, 0, false);
+        lift1.setPosition(0.25);
+        lift2.setPosition(0.25);
+        lift3.setPosition(0.25);
+        lift4.setPosition(0.25);
 
 
 
@@ -132,9 +136,9 @@ public class HALAutoGoldtwo extends LinearOpMode {
 
         //3.2. Re-center
 
-//        enc.gyroStrafeDistance(0.4,-3, 0, false);
-//        waitFor(1000);
-//        waitFor(500);
+        enc.gyroStrafeDistance(0.4,-3, 0, false);
+        waitFor(1000);
+        waitFor(500);
 
 
         //4. Sample gold mineral
@@ -201,15 +205,15 @@ public class HALAutoGoldtwo extends LinearOpMode {
 
 
         }
-        enc.gyroDrive(0.4,-8,0,false);
-        enc.gyroStrafeDistance(0.3,16.97+3,0,false);
-            waitFor(1000);
-            enc.gyroDrive(0.4, -18, 0, false);
-            waitFor(1000);
-//            enc.gyroHold(-0.2, 45, 3);
-            enc.gyroDrive(0.4,18,0,false);
-            enc.gyroStrafeDistance(0.3,-16.97-3,0,false);
-            waitFor(500);
+//        enc.gyroDrive(0.4,-8,0,false);
+//        enc.gyroStrafeDistance(0.3,16.97+3,0,false);
+//            waitFor(1000);
+//            enc.gyroDrive(0.4, -18, 0, false);
+//            waitFor(1000);
+////            enc.gyroHold(-0.2, 45, 3);
+//            enc.gyroDrive(0.4,18,0,false);
+//            enc.gyroStrafeDistance(0.3,-16.97-3,0,false);
+//            waitFor(500);
 
             //enc.gyroHold(0.3, 50,2);
 //            armR.setTargetPosition(2100);

@@ -1,5 +1,5 @@
 package org.firstinspires.ftc.teamcode.HAL.teleOp;
-
+//--------------------------------------------------------------------------------------------------
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -19,7 +19,7 @@ public class HALteleOp3 extends OpMode {
     private mecanumDrivetrain robot;
     private HAL_Articulator scoring;
     Servo lift1, lift2, lift3, lift4;
-    CRServo hook;
+    CRServo hook, trapDoor;
 
 
     Telemetry tele;
@@ -37,6 +37,7 @@ public class HALteleOp3 extends OpMode {
         lift4 = hardwareMap.servo.get("lift4");
 
         hook = hardwareMap.crservo.get("hook");
+       trapDoor = hardwareMap.crservo.get("trapDoor");
 
         lift1.setPosition(0.21);
         lift2.setPosition(0.21);
@@ -77,7 +78,15 @@ public class HALteleOp3 extends OpMode {
         }
 
         if (gamepad1.b) {
-            hook.setPower(-1);
+            trapDoor.setPower(-0.25);
+
         }
+            if (gamepad2.x){
+                trapDoor.setPower(0.25);
+            }
+
+            if (gamepad1.a){
+            hook.setPower(0.5);
+            }
         }
     }
