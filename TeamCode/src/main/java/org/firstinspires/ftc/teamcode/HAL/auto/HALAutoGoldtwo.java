@@ -120,8 +120,8 @@ public class HALAutoGoldtwo extends LinearOpMode {
         //2. Strafe to the left
 
         enc.gyroStrafeDistance(0.4, 6, 0, false);
-        enc.gyroStrafeDistance(0.4, -6, 0, false);
-        waitFor(250);
+        enc.gyroStrafeDistance(0.4, -8, 0, false);
+        waitFor(1000);
         lift1.setPosition(0.21);
         lift2.setPosition(0.21);
         lift3.setPosition(0.21);
@@ -173,23 +173,20 @@ public class HALAutoGoldtwo extends LinearOpMode {
 
         } else if (position == 2) {
            enc.gyroDrive(0.4,-8,0,false);
-        enc.gyroStrafeDistance(0.3,16.97+3,0,false);
-            waitFor(1000);
-            enc.gyroDrive(0.4, -18, 0, false);
-            waitFor(1000);
-            enc.gyroHold(-0.2, 45, 3);
-            enc.gyroDrive(0.4,18,0,false);
-            enc.gyroStrafeDistance(0.3,-16.97-3,0,false);
-            waitFor(500);
+           enc.gyroStrafeDistance(0.3,16.97+3,0,false);
+           waitFor(1000);
+           enc.gyroDrive(0.4, -18, 0, false);
+           waitFor(1000);
+           enc.gyroHold(-0.2, 45, 3);
+           enc.gyroDrive(0.4,18,0,false);
+           enc.gyroStrafeDistance(0.3,-16.97-3,0,false);
+           waitFor(500);
 
         } else {
             waitFor(5000);
-            enc.gyroDrive(0.3, -29,0, false);
-            enc.gyroDrive(0.3, 18,0, false);
-            waitFor(1000);
-            wristL.setPower(1);
-            wristR.setPower(-1);
-            waitFor(500);
+            enc.gyroDrive(0.3, -31,0, false);
+            enc.gyroDrive(0.3, 17,0, false);
+
 //            intR.setPower(-0.7);
 //            intL.setPower(0.7);
 //            armL.setTargetPosition(500);
