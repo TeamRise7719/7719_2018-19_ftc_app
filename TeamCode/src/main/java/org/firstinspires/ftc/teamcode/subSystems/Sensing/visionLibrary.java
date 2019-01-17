@@ -77,30 +77,27 @@ public class visionLibrary {
             List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
             if (updatedRecognitions != null) {
                 tele.addData("# Object Detected", updatedRecognitions.size());
-                if (updatedRecognitions.size() == 3) {
+                if (updatedRecognitions.size() == 2) {
                     int goldMineralX = -1;
-                    int silverMineral1X = -1;
-                    int silverMineral2X = -1;
+                    int silverMineralX = -1;
                     for (Recognition recognition : updatedRecognitions) {
                         if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
                             goldMineralX = (int) recognition.getLeft();
-                        } else if (silverMineral1X == -1) {
-                            silverMineral1X = (int) recognition.getLeft();
                         } else {
-                            silverMineral2X = (int) recognition.getLeft();
+                            silverMineralX = (int) recognition.getLeft();
                         }
                     }
-                    if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
-                        if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
-                            tele.addData("Gold Mineral Position", "Left");
-                            position = 0;
-                        } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
+                    if (goldMineralX != -1 && silverMineralX != -1) {
+                        if (goldMineralX > silverMineralX) {
                             tele.addData("Gold Mineral Position", "Right");
                             position = 2;
                         } else {
                             tele.addData("Gold Mineral Position", "Center");
                             position = 1;
                         }
+                    } else {
+                        tele.addData("Gold Mineral Position", "Left");
+                        position = 0;
                     }
                 }
                 tele.update();
