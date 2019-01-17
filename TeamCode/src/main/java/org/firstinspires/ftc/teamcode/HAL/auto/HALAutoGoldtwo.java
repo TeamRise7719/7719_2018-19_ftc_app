@@ -107,32 +107,31 @@ public class HALAutoGoldtwo extends LinearOpMode {
 
         //1. Drop down from the latch
 
-        lift1.setPosition(0.75);
-        lift2.setPosition(0.75);
-        lift3.setPosition(0.75);
-        lift4.setPosition(0.75);
-//        hook.setPower(-1);
-//
+        lift1.setPosition(0.8);
+        lift2.setPosition(0.8);
+        lift3.setPosition(0.8);
+        lift4.setPosition(0.8);
+        waitFor(4000);
 
 
-
+        hook.setPower(-1);
+        waitFor(250);
 
         //2. Strafe to the left
 
         enc.gyroStrafeDistance(0.4, 4, 0, false);
         enc.gyroStrafeDistance(0.4, -4, 0, false);
-        lift1.setPosition(0.25);
-        lift2.setPosition(0.25);
-        lift3.setPosition(0.25);
-        lift4.setPosition(0.25);
+        waitFor(250);
+        lift1.setPosition(0.21);
+        lift2.setPosition(0.21);
+        lift3.setPosition(0.21);
+        lift4.setPosition(0.21);
+        waitFor(2000);
 
 
 
         //3.1. Come forward
 
-        enc.gyroDrive(0.4, -3,0,false);
-        waitFor(1000);
-        waitFor(500);
 
         //3.2. Re-center
 
@@ -143,8 +142,6 @@ public class HALAutoGoldtwo extends LinearOpMode {
 
         //4. Sample gold mineral
 
-        enc.gyroDrive(0.3, -3, 0, false);
-        waitFor(1000);
 
         waitFor(500);
         if(position == 0){
@@ -240,6 +237,14 @@ public class HALAutoGoldtwo extends LinearOpMode {
         enc.gyroHold(-0.2, -50, 3);
         enc.gyroStrafeDistance(0.4, -2.5, 0, false);
         enc.gyroDrive(0.4, 20, 0, false);
+        waitFor(250);
+        wristL.setPower(0.18);
+        wristR.setPower(-0.18);
+        waitFor(1000);
+        intL.setPower(-0.8);
+        intL.setPower(0.8);
+        waitFor(2000);
+        enc.gyroDrive(0.4, 72, 0,false);
 //
 //
 //        waitFor(1000);
