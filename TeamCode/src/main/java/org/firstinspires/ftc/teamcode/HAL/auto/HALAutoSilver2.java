@@ -77,10 +77,19 @@ public class HALAutoSilver2 extends LinearOpMode {
         enc = new encoderLibrary(hardwareMap, telemetry, this);
         enc.init();
 
+        lift1.setPosition(0.21);
+        lift1.setPosition(0.21);
+        lift2.setPosition(0.21);
+        lift3.setPosition(0.21);
+        lift4.setPosition(0.21);
+
         vis = new visionLibrary(hardwareMap, telemetry);
         vis.initVuforia();
         vis.initTfod();
         vis.camFlash(true);
+
+
+
         while (!isStarted()) {
             position = vis.objectVision();
         }
@@ -96,63 +105,107 @@ public class HALAutoSilver2 extends LinearOpMode {
 
 
         //1. Drop down from the latch
-//        lift1.setPosition(0.75);
-//        lift2.setPosition(0.75);
-//        lift3.setPosition(0.75);
-//        lift4.setPosition(0.75);
-//        hook.setPower(-1);
-//
+
+        lift1.setPosition(0.8);
+        lift2.setPosition(0.8);
+        lift3.setPosition(0.8);
+        lift4.setPosition(0.8);
+        waitFor(4500);
 
 
-        //2. strafe off
-        // enc.gyroStrafeDistance(0.4,-3,0,false);
+        hook.setPower(-0.65);
+        waitFor(1000);
+
+        //2. Strafe to the left
+
+//        enc.gyroStrafeDistance(0.4, 6, 0, false);
+//        enc.gyroStrafeDistance(0.4, -8, 0, false);
+
+        waitFor(500);
+
+        lift1.setPosition(0.21);
+        lift2.setPosition(0.21);
+        lift3.setPosition(0.21);
+        lift4.setPosition(0.21);
+
+
+
 
 
         //3.1. Come forward
 
-        //enc.gyroDrive(0.4, -3,0,false);
-        // waitFor(200);
 
         //3.2. Re-center
 
-        //enc.gyroStrafeDistance(0.4,-3, 0, false);
-        waitFor(200);
+        enc.gyroDrive(0.4,-4.5, 0, false);
+//        waitFor(1000);
+//        waitFor(500);
+
 
 
         //4. Sample gold mineral
 
-        enc.gyroDrive(0.3, -6, 0, false);
-        waitFor(500);
+
         if (position == 0) {
-            enc.gyroHold(0.4, 45, 250);
-//          put out outtake and pickup gold mineral.
-            enc.gyroHold(-0.4, -45, 250);
-            enc.gyroStrafeDistance(0.4, 2, 0, false);
-            // put out outtake into depot
-            enc.gyroStrafeDistance(0.4, -2, 0, false);
+            enc.gyroDrive(0.4,-11,0,false);
+            enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
+            waitFor(250);
+            enc.gyroDrive(0.4, -12, 0, false);
+            waitFor(250);
+            enc.gyroDrive(0.4, 11, 0, false);
+            waitFor(250);
+//            enc.gyroDrive(0.4, -24, 0, false);
+//            waitFor(1000);
+
+//            enc.gyroHold(0.3, 47,2);
+//            waitFor(100);
+//            armR.setPower(0.5);
+//            armL.setPower(-0.5);
+//            waitFor(100);
+//            armR.setPower(-0.5);
+//            armL.setPower(0.5);
+//            waitFor(100);
+//            enc.gyroHold(0.3, -47,2);
+
+//            enc.gyroHold(0.2, 45, 3);
+//            enc.gyroDrive(0.4,6,0,false);
+            //waitFor(500);
+            enc.gyroStrafeDistance(0.3,16.97+3,0,false);
+
+
 
         } else if (position == 2) {
-            enc.gyroHold(-0.4, -45, 250);
-//          put out outake and pickup gold mineral.
-            enc.gyroHold(0.4, 45, 250);
-            enc.gyroStrafeDistance(0.4, -2, 0, false);
-            // put out outtake into depot
-            enc.gyroStrafeDistance(0.4, 2, 0, false);
+            enc.gyroDrive(0.4,-11,0,false);
+            enc.gyroStrafeDistance(0.3,16.97+3,0,false);
+            waitFor(250);
+            enc.gyroDrive(0.4, -12, 0, false);
+            waitFor(250);
+            enc.gyroDrive(0.4,11,0,false);
+            waitFor(250);
+            enc.gyroStrafeDistance(0.3,-16.97-3,0,false);
+            enc.gyroDrive(0.4,2,0,false);
+
+
 
 
         } else {
 
-            enc.gyroDrive(0.4, -18, 0, false);
-            waitFor(1000);
-            enc.gyroDrive(0.4,12,0,false);
-//        }
-
-            enc.gyroStrafeDistance(0.4, -60, 0, false);
+            enc.gyroDrive(0.4, -21, 0, false);
             waitFor(250);
-            enc.gyroHold(-0.2, -125 , 3);
-            enc.gyroStrafeDistance(0.4, -2.5, 0, false);
-            enc.gyroDrive(0.4, -50, 0, false);
-            enc.gyroDrive(0.4, 50, 0, false);
+            enc.gyroDrive(0.4,12,0,false);
+        }
+            waitFor(250);
+
+            enc.gyroStrafeDistance(0.4, -52, 0, false);
+            waitFor(250);
+            enc.gyroTurn(0.7, 135);
+            enc.gyroStrafeDistance(0.4, 4.5, 0, false);
+            enc.gyroDrive(0.4, -42, 0, false);
+            waitFor(250);
+            wristL.setPower(0.25);
+            wristR.setPower(-0.25);
+            waitFor(1000);
+            enc.gyroDrive(0.6, 62, 0, false);
 
 //        enc.gyroStrafeDistance(0.4, 52, 0, false);
 //        waitFor(250);
@@ -176,4 +229,3 @@ public class HALAutoSilver2 extends LinearOpMode {
 
         }
     }
-}

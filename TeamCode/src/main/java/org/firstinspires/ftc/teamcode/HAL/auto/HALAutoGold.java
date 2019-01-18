@@ -28,6 +28,7 @@ import org.firstinspires.ftc.teamcode.subSystems.Sensing.visionLibrary;
     Servo lift2;
     Servo lift3;
     Servo lift4;
+    CRServo wristR, wristL;
 
     ElapsedTime etime = new ElapsedTime();
 
@@ -55,7 +56,8 @@ import org.firstinspires.ftc.teamcode.subSystems.Sensing.visionLibrary;
         lift2 = hardwareMap.servo.get("lift2");
         lift3 = hardwareMap.servo.get("lift3");
         lift4 = hardwareMap.servo.get("lift4");
-
+        wristR = hardwareMap.crservo.get("wristR");
+        wristL = hardwareMap.crservo.get("wristL");
 
 
         enc = new encoderLibrary(hardwareMap, telemetry,this);
@@ -73,138 +75,141 @@ import org.firstinspires.ftc.teamcode.subSystems.Sensing.visionLibrary;
 
         vis.camFlash(false);
 
-        //        enc.gyroHold(-0.2, 45, 3);
-        //        enc.gyroHold(0.2, 45, 3);
-        //        enc.gyroHold(-0.2, -45, 3);
-//        enc.gyroHold(0.2, -45, 3);
-
-
-
-
-
-        //1. Drop down from the latch
-
-//        lift1.setPosition(0.75);
-//        lift2.setPosition(0.75);
-//        lift3.setPosition(0.75);
-//        lift4.setPosition(0.75);
-//        hook.setPower(-1);
+        wristL.setPower(-1);
+       wristR.setPower(1);
 //
-
-
-
-
-        //2. Strafe to the left
-
-//        enc.gyroStrafeDistance(0.4, 3, 0, false);
-//        enc.gyroStrafeDistance(0.4, 3, 0, false);
-
-
-
-        //3.1. Come forward
-
-        enc.gyroDrive(0.4, -3,0,false);
-        waitFor(1000);
-        waitFor(500);
-
-        //3.2. Re-center
-
-//        enc.gyroStrafeDistance(0.4,-3, 0, false);
+//        //        enc.gyroHold(-0.2, 45, 3);
+//        //        enc.gyroHold(0.2, 45, 3);
+//        //        enc.gyroHold(-0.2, -45, 3);
+////        enc.gyroHold(0.2, -45, 3);
+//
+//
+//
+//
+//
+//        //1. Drop down from the latch
+//
+////        lift1.setPosition(0.75);
+////        lift2.setPosition(0.75);
+////        lift3.setPosition(0.75);
+////        lift4.setPosition(0.75);
+////        hook.setPower(-1);
+////
+//
+//
+//
+//
+//        //2. Strafe to the left
+//
+////        enc.gyroStrafeDistance(0.4, 3, 0, false);
+////        enc.gyroStrafeDistance(0.4, 3, 0, false);
+//
+//
+//
+//        //3.1. Come forward
+//
+//        enc.gyroDrive(0.4, -3,0,false);
 //        waitFor(1000);
 //        waitFor(500);
-
-
-        //4. Sample gold mineral
-
-        enc.gyroDrive(0.3, -9, 0, false);
-        waitFor(1000);
-
-        waitFor(500);
-        if(position == 0){
-            enc.gyroStrafeDistance(0.3,16.97+3, 0,false);
-            waitFor(500);
-            enc.gyroDrive(0.4, 18, 0, false);
-            waitFor(500);
-            enc.gyroDrive(0.4, -18, 0, false);
-            waitFor(1000);
+//
+//        //3.2. Re-center
+//
+////        enc.gyroStrafeDistance(0.4,-3, 0, false);
+////        waitFor(1000);
+////        waitFor(500);
+//
+//
+//        //4. Sample gold mineral
+//
+//        enc.gyroDrive(0.3, -9, 0, false);
+//        waitFor(1000);
+//
+//        waitFor(500);
+//        if(position == 0){
+//            enc.gyroStrafeDistance(0.3,16.97+3, 0,false);
+//            waitFor(500);
+//            enc.gyroDrive(0.4, 18, 0, false);
+//            waitFor(500);
+//            enc.gyroDrive(0.4, -18, 0, false);
+//            waitFor(1000);
+////            enc.gyroDrive(0.4, -24, 0, false);
+////            waitFor(1000);
+//
+////            enc.gyroHold(0.3, 47,2);
+////            waitFor(100);
+////            armR.setPower(0.5);
+////            armL.setPower(-0.5);
+////            waitFor(100);
+////            armR.setPower(-0.5);
+////            armL.setPower(0.5);
+////            waitFor(100);
+////            enc.gyroHold(0.3, -47,2);
+//
+//            enc.gyroHold(0.2, 45, 3);
+////            enc.gyroDrive(0.4,6,0,false);
+//            waitFor(500);
+//            enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
+//        } else if (position == 2) {
+//            enc.gyroStrafeDistance(0.3,-16.97+3, 0,false);
+//            waitFor(1000);
 //            enc.gyroDrive(0.4, -24, 0, false);
 //            waitFor(1000);
-
-//            enc.gyroHold(0.3, 47,2);
-//            waitFor(100);
-//            armR.setPower(0.5);
-//            armL.setPower(-0.5);
-//            waitFor(100);
-//            armR.setPower(-0.5);
-//            armL.setPower(0.5);
-//            waitFor(100);
-//            enc.gyroHold(0.3, -47,2);
-
-            enc.gyroHold(0.2, 45, 3);
+//            enc.gyroHold(-0.2, 45, 3);
 //            enc.gyroDrive(0.4,6,0,false);
-            waitFor(500);
-            enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
-        } else if (position == 2) {
-            enc.gyroStrafeDistance(0.3,-16.97+3, 0,false);
-            waitFor(1000);
-            enc.gyroDrive(0.4, -24, 0, false);
-            waitFor(1000);
-            enc.gyroHold(-0.2, 45, 3);
-            enc.gyroDrive(0.4,6,0,false);
-            enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
-            waitFor(500);
-
-//            enc.gyroHold(0.3, 50,2);
-//            armR.setPower(1);
-//            armL.setPower(-1);
-//            waitFor(900);
-//            armR.setPower(-1);
-//            armL.setPower(1);
-//            waitFor(900);
-//            enc.gyroHold(0.3, -50,2);
-
-        } else {
-            enc.gyroDrive(0.4, -26, 0, false);
-            enc.gyroDrive(0.4, 18, 0, false);
-            waitFor(1000);
-
-//            armR.setPower(1);
-//            armL.setPower(-1);
-//            waitFor(900);
-//            armR.setPower(-1);
-//            armL.setPower(1);
-
-        }
-
-
-
-
-        //5. Drive clear of sample field
-
-
-
-
-
-        //7. Drop off team marker
-
-
-        enc.gyroStrafeDistance(0.3,16.97+3, 0,false);
-        enc.gyroStrafeDistance(0.4, 52, 0, false);
-        waitFor(250);
-        enc.gyroHold(-0.2, -50, 3);
-        enc.gyroStrafeDistance(0.4, 1.5, 0, false);
-        enc.gyroDrive(0.4, -50, 0, false);
-
-
-        waitFor(1000);
-        enc.gyroDrive(0.8, 75 / 2, 0, false);
-        waitFor(500);
-
-//        //8. Turn towards crater
-
-//        enc.gyroHold(-0.2,135, 5);
-//        enc.gyroDrive(0.8, 30, 0, false);
-
+//            enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
+//            waitFor(500);
+//
+////            enc.gyroHold(0.3, 50,2);
+////            armR.setPower(1);
+////            armL.setPower(-1);
+////            waitFor(900);
+////            armR.setPower(-1);
+////            armL.setPower(1);
+////            waitFor(900);
+////            enc.gyroHold(0.3, -50,2);
+//
+//        } else {
+//            enc.gyroDrive(0.4, -26, 0, false);
+//            enc.gyroDrive(0.4, 18, 0, false);
+//            waitFor(1000);
+//
+////            armR.setPower(1);
+////            armL.setPower(-1);
+////            waitFor(900);
+////            armR.setPower(-1);
+////            armL.setPower(1);
+//
+//        }
+//
+//
+//
+//
+//        //5. Drive clear of sample field
+//
+//
+//
+//
+//
+//        //7. Drop off team marker
+//
+//
+//        enc.gyroStrafeDistance(0.3,16.97+3, 0,false);
+//        enc.gyroStrafeDistance(0.4, 52, 0, false);
+//        waitFor(250);
+//        enc.gyroHold(-0.2, -50, 3);
+//        enc.gyroStrafeDistance(0.4, 1.5, 0, false);
+//        enc.gyroDrive(0.4, -50, 0, false);
+//
+//
+//        waitFor(1000);
+//        enc.gyroDrive(0.8, 75 / 2, 0, false);
+//        waitFor(500);
+//
+////        //8. Turn towards crater
+//
+////        enc.gyroHold(-0.2,135, 5);
+////        enc.gyroDrive(0.8, 30, 0, false);
+//
 
 //
 

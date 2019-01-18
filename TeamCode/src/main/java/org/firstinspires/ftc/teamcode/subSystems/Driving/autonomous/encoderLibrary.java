@@ -40,6 +40,7 @@ public class encoderLibrary {
     private static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
     private static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
+    private static final double STRAFING_COEFFICIENT = 0;
 
     // These constants define the desired driving/control characteristics
     // The can/should be tweaked to suite the specific robot drive train.
@@ -49,11 +50,11 @@ public class encoderLibrary {
     public  final double     TURN_SPEED              = 0.4;     // Nominal half speed for better accuracy.
 
     private static final double     HEADING_THRESHOLD       = 0.3 ;      // As tight as we can make it with an integer gyro
-    private static final double     ENCODER_THRESHOLD       = 10;      // As tight as we can make it with an integer gyro
+    private static final double     ENCODER_THRESHOLD       = 7;      // As tight as we can make it with an integer gyro
 
-    private static  double     P_TURN_COEFF            = 0.074;     // Larger is more responsive, but also less stable
+    private static  double     P_TURN_COEFF            = 0.0695;     // Larger is more responsive, but also less stable
     private static  double     I_TURN_COEFF            = 0.00;     // Larger is more responsive, but also less stable
-    private static  double     D_TURN_COEFF            = 0.116;     // Larger is more responsive, but also less stable
+    private static  double     D_TURN_COEFF            = 0.09;     // Larger is more responsive, but also less stable
 
 
     private static final double     P_DRIVE_COEFF           = 0.16;     // Larger is more responsive, but also less stable

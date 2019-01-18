@@ -96,7 +96,7 @@ public class HALAutoGold3 extends LinearOpMode {
         waitFor(250);
 
         enc.gyroHold(0.4, -90, 3);
-        winchMotor.setPower(0);
+
 
 
         //4. Sample gold mineral
@@ -105,25 +105,25 @@ public class HALAutoGold3 extends LinearOpMode {
 
         if(position == 0){
             enc.gyroStrafeDistance(0.3,16.97+3, 0,false);
-            waitFor(500);
+            waitFor(250);
             enc.gyroDrive(0.4, 21, 0, false);
-            waitFor(500);
+            waitFor(250);
             enc.gyroDrive(0.4, -21,0, false);
-            waitFor(1000);
+            waitFor(250);
             enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
         } else if (position == 2) {
             enc.gyroStrafeDistance(0.3,16.97-3, 0,false);
-            waitFor(500);
+            waitFor(250);
             enc.gyroDrive(0.4, 21, 0, false);
-            waitFor(500);
+            waitFor(250);
             enc.gyroDrive(0.4, -21, 0, false);
-            waitFor(1000);
+            waitFor(250);
             enc.gyroStrafeDistance(0.3,-16.97+3, 0,false);
         } else {
             enc.gyroDrive(0.4, 18, 0, false);
             waitFor(250);
             enc.gyroDrive(0.4, 1-8, 0, false);
-            waitFor(500);
+            waitFor(2520);
 
         }
 
