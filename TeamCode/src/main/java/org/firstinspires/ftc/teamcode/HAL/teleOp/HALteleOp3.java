@@ -85,11 +85,12 @@ public class HALteleOp3 extends OpMode {
                 trapDoor.setPower(0.25);
             }
 
+
             if (gamepad1.a){
             hook.setPower(0.5);
             }
 
-            if (gamepad1.x){
+            if (gamepad1.y){
             hook.setPower(-0.75
 
             );

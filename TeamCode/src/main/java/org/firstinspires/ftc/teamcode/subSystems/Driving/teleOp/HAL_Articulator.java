@@ -148,8 +148,8 @@ public class HAL_Articulator {
 //
 //        }
 
-        shoulderR.setPower(gamepad2.left_stick_y);
-        shoulderL.setPower(gamepad2.left_stick_y);
+        shoulderR.setPower(gamepad2.left_stick_y/2);
+        shoulderL.setPower(gamepad2.left_stick_y/2);
 
     }
 
@@ -184,6 +184,13 @@ public class HAL_Articulator {
             wristL.setPower(wristL.getPower() - 0.05);
             wristR.setPower(wristR.getPower() + 0.05);
 
+        }
+        if (gamepad2.dpad_left){
+            wristL.setPower(1);
+            wristR.setPower(-1);
+        } else if (gamepad2.dpad_right){
+            wristL.setPower(-1);
+            wristR.setPower(1);
         }
 
     }

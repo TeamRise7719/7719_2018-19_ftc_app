@@ -35,7 +35,7 @@ public class HALTurnTest extends LinearOpMode{
 //
 //        enc.gyroTurn(0.7, 90 );
 //        enc.gyroTurn(0.7, 135 );
-        enc.gyroTurn(0.7, 135);
+        enc.gyroTurn(0.7, 45);
 
 
     }
