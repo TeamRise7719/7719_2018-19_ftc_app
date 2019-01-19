@@ -24,6 +24,7 @@ public class encoderLibrary {
     DcMotor left_front_drive;
     DcMotor right_back_drive;
     DcMotor right_front_drive;
+    DcMotor odometry;
     SynchronousPID turn_PID;
 
     public BNO055IMU gyro;
@@ -57,8 +58,8 @@ public class encoderLibrary {
     private static  double     D_TURN_COEFF            = 0.09;     // Larger is more responsive, but also less stable
 
 
-    private static final double     P_DRIVE_COEFF           = 0.16;     // Larger is more responsive, but also less stable
-    private static final double     ULTRA_COEFF           = 0.07;     // Larger is more responsive, but also less stable
+    private static final double     P_DRIVE_COEFF           = 0.16;  // 0.16    // Larger is more responsive, but also less stable
+    private static final double     ULTRA_COEFF           = 0.07;    // 0.07 // Larger is more responsive, but also less stable
 
     public encoderLibrary(HardwareMap hardwareMap, Telemetry tel, LinearOpMode opMode) {
         gyro = hardwareMap.get(BNO055IMU.class, "imuINT");
@@ -70,6 +71,7 @@ public class encoderLibrary {
         left_front_drive = hardwareMap.dcMotor.get("leftF");
         right_back_drive = hardwareMap.dcMotor.get("rightB");
         right_front_drive = hardwareMap.dcMotor.get("rightF");
+        odometry = hardwareMap.dcMotor.get("shoulderL");
 
         telemetry = tel;
         linearOpMode = opMode;
@@ -103,11 +105,14 @@ public class encoderLibrary {
         left_front_drive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         right_back_drive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         right_front_drive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        odometry.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         left_back_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         left_front_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         right_back_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         right_front_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        odometry.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
         DcMotorControllerEx motorControllerExLB = (DcMotorControllerEx) left_back_drive.getController();
@@ -249,6 +254,124 @@ public class encoderLibrary {
             right_front_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
+
+
+
+
+
+    public void gyroDriveOdometry ( double speed,
+                            double distance,
+                            double angle,
+                            boolean steeringToggle) {
+
+        int     newTarget;
+        int     moveCounts;
+        double  max;
+        double  error;
+        double  steer;
+        double  leftSpeed;
+        double  rightSpeed;
+
+        // Ensure that the opmode is still active
+        if (linearOpMode.opModeIsActive()) {
+
+
+            odometry.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            odometry.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            left_back_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            left_front_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            right_back_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            right_front_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            // Determine new target position, and pass to motor controller
+            moveCounts = (int)(distance * COUNTS_PER_INCH);
+            newTarget = odometry.getCurrentPosition() + moveCounts;
+
+
+//            // Set Target and Turn On RUN_TO_POSITION
+//            left_back_drive.setTargetPosition(newLeftTarget);
+//            left_front_drive.setTargetPosition(newLeftTarget);
+//            right_back_drive.setTargetPosition(newRightTarget);
+//            right_front_drive.setTargetPosition(newRightTarget);
+//
+//            left_back_drive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//            left_front_drive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//            right_back_drive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//            right_front_drive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            // Turn off RUN_TO_POSITION
+            left_back_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            left_front_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            right_back_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            right_front_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            // start motion.
+
+
+            // keep looping while we are still active, and BOTH motors are running.
+            while (linearOpMode.opModeIsActive() && (Math.abs(newTarget-odometry.getCurrentPosition())>ENCODER_THRESHOLD )) {
+
+                // adjust relative speed based on heading error.
+                error = getError(angle);
+                steer = getSteer(error, P_DRIVE_COEFF);
+
+                // if driving in reverse, the motor correction also needs to be reversed
+                if (distance > 0) {
+                    steer *= -1.0;
+                }
+
+                if(steeringToggle) {
+                    leftSpeed = speed - steer;
+                    rightSpeed = speed + steer;
+                }
+                else if ((Math.abs(odometry.getCurrentPosition()) < 250) || ((Math.abs(odometry.getCurrentPosition()) > (Math.abs(newTarget) - 250)) )) {
+
+                    leftSpeed = 0.15;
+                    rightSpeed = 0.15;
+                } else {
+                    leftSpeed = speed;
+                    rightSpeed = speed;
+                }
+
+                // Normalize speeds if either one exceeds +/- 1.0;
+                max = Math.max(Math.abs(leftSpeed), Math.abs(rightSpeed));
+                if (max > 1.0)
+                {
+                    leftSpeed /= max;
+                    rightSpeed /= max;
+                }
+
+                left_back_drive.setPower(-leftSpeed);
+                left_front_drive.setPower(-leftSpeed);
+                right_back_drive.setPower(-rightSpeed);
+                right_front_drive.setPower(-rightSpeed);
+
+                // Display drive status for the driver.
+                telemetry.addData("Err/St",  "%5.1f/%5.1f",  error, steer);
+                telemetry.addData("Target",  "%7d",      newTarget);
+                telemetry.addData("Actual",  "%7d",      odometry.getCurrentPosition());
+                telemetry.addData("Speed",   "%5.2f:%5.2f",  -leftSpeed, -rightSpeed);
+                telemetry.update();
+            }
+
+            // Stop all motion;
+            left_back_drive.setPower(0);
+            left_front_drive.setPower(0);
+            right_back_drive.setPower(0);
+            right_front_drive.setPower(0);
+
+            // Turn off RUN_TO_POSITION
+            left_back_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            left_front_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            right_back_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            right_front_drive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+    }
+
+
+
+
+
 
 
     public void gyroDriveTime ( double speed,

@@ -148,11 +148,11 @@ public class HALAutoSilver2 extends LinearOpMode {
         //4. Sample gold mineral
 
 
-        if (position == 0) {
-            enc.gyroDrive(0.4,-11,0,false);
+        if(position == 0){
+            enc.gyroDrive(0.4,-9,0,false);
             enc.gyroStrafeDistance(0.3,-16.97-3, 0,false);
             waitFor(250);
-            enc.gyroDrive(0.4, -12, 0, false);
+            enc.gyroDrive(0.4, -11.5, 0, false);
             waitFor(250);
             enc.gyroDrive(0.4, 11, 0, false);
             waitFor(250);
@@ -175,41 +175,37 @@ public class HALAutoSilver2 extends LinearOpMode {
             enc.gyroStrafeDistance(0.3,16.97+3,0,false);
 
 
-
         } else if (position == 2) {
-            enc.gyroDrive(0.4,-11.5,0,false);
+            enc.gyroDrive(0.4,-9,0,false);
             enc.gyroStrafeDistance(0.3,16.97+3,0,false);
             waitFor(250);
-            enc.gyroDrive(0.4, -11, 0, false);
+            enc.gyroDrive(0.4, -11.5, 0, false);
             waitFor(250);
             enc.gyroDrive(0.4,11,0,false);
-            waitFor(250);
             enc.gyroStrafeDistance(0.3,-16.97-3,0,false);
-            enc.gyroDrive(0.4,2,0,false);
-
-
-
+            waitFor(250);
 
         } else {
 
-            enc.gyroDrive(0.4, -21, 0, false);
-            waitFor(250);
-            enc.gyroDrive(0.4,12,0,false);
+            enc.gyroDrive(0.3, -19.5, 0, false);
+            enc.gyroDrive(0.3, 11, 0, false);
+
+
         }
             waitFor(250);
 
             enc.gyroStrafeDistance(0.4, -52, 0, false);
             waitFor(250);
-            enc.gyroTurn(0.7, 45);
-            enc.gyroStrafeDistance(0.4, 4.5, 0, false);
-            enc.gyroDrive(0.4, -42, 0, false);
+            enc.gyroHold(0.7, 135, 3);
+            enc.gyroStrafeDistance(0.4, 12, 0, false);
+            enc.gyroDrive(0.6, -42, 0, false);
             waitFor(250);
-            wristL.setPower(0.25);
-            wristR.setPower(-0.25);
+        wristL.setPower(1);
+        wristR.setPower(-1);
             waitFor(1000);
-            enc.gyroDrive(0.6, 62, 0, false);
+            enc.gyroDrive(0.6, 66, 0, false);
 
-//        enc.gyroStrafeDistance(0.4, 52, 0, false);
+//        enc.gyroStrafeDistance(0.4, 52, 0, false)
 //        waitFor(250);
 //        enc.gyroHold(0.2, -215 + 195    , 3);
 //        waitFor(200);
