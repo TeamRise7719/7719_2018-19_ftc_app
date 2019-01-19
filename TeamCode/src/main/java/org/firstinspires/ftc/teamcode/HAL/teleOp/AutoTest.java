@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.HAL.teleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -10,7 +11,7 @@ import org.firstinspires.ftc.teamcode.subSystems.Driving.autonomous.encoderLibra
 import org.firstinspires.ftc.teamcode.subSystems.Driving.teleOp.mecanumDrivetrain;
 
 @Autonomous
-
+@Disabled
 public class AutoTest extends LinearOpMode {
 
     encoderLibrary enc;

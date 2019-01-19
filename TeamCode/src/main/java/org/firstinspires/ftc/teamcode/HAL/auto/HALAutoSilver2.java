@@ -10,7 +10,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.subSystems.Driving.autonomous.encoderLibrary;
 import org.firstinspires.ftc.teamcode.subSystems.Sensing.visionLibrary;
 
-@Autonomous
+@Autonomous (name = "SILVER", group = "HAL")
+
+
 public class HALAutoSilver2 extends LinearOpMode {
 
 
@@ -175,10 +177,10 @@ public class HALAutoSilver2 extends LinearOpMode {
 
 
         } else if (position == 2) {
-            enc.gyroDrive(0.4,-11,0,false);
+            enc.gyroDrive(0.4,-11.5,0,false);
             enc.gyroStrafeDistance(0.3,16.97+3,0,false);
             waitFor(250);
-            enc.gyroDrive(0.4, -12, 0, false);
+            enc.gyroDrive(0.4, -11, 0, false);
             waitFor(250);
             enc.gyroDrive(0.4,11,0,false);
             waitFor(250);
@@ -198,7 +200,7 @@ public class HALAutoSilver2 extends LinearOpMode {
 
             enc.gyroStrafeDistance(0.4, -52, 0, false);
             waitFor(250);
-            enc.gyroTurn(0.7, 135);
+            enc.gyroTurn(0.7, 45);
             enc.gyroStrafeDistance(0.4, 4.5, 0, false);
             enc.gyroDrive(0.4, -42, 0, false);
             waitFor(250);

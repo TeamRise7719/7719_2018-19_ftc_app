@@ -554,7 +554,7 @@ public class encoderLibrary {
         etime.reset();
 
         // keep looping while we are still active, and not on heading.
-        while (linearOpMode.opModeIsActive()/* && etime.time()<0.35*/) {
+        while (linearOpMode.opModeIsActive() && etime.time()<0.35) {
             doneTurning = onHeading(angle);
             if(!doneTurning){
                 etime.reset();
